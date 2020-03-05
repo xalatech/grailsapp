@@ -1,0 +1,11 @@
+package siv.type;
+
+public enum Landsdel {
+	OSLO_AKERSHUS,
+	HEDMARK_OPPLAND,
+	OSTLANDET,
+	AGDER_ROGALAND,
+	TRONDELAG,
+	VESTLANDET,
+	NORDNORGE
+}
