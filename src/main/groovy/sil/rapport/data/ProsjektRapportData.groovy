@@ -1,7 +1,7 @@
 package sil.rapport.data
 
-import no.ssb.sivadm.util.DateUtil;
-import no.ssb.sivadm.util.TimeUtil;
+import util.DateUtil;
+import util.TimeUtil;
 
 class ProsjektRapportData {
 	String skjemaNavn

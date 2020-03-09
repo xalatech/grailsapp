@@ -1,6 +1,6 @@
 package sil.rapport.data
 
-import no.ssb.sivadm.util.DateUtil;
+import util.DateUtil;
 
 class UkeRapportDetaljerData {	
 	Long intervjuerNummer

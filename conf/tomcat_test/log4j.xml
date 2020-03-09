@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <appender name="mainLog" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="/usr/share/tomcat/logs/sivadmin.log"/>
+        <param name="MaxFileSize" value="100MB" />
+        <param name="MaxBackupIndex" value="10" />
+        <param name="encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.EnhancedPatternLayout">
+            <param name="ConversionPattern" value="%d %5p [%c{1.}] (%t) %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="errorLog" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="/usr/share/tomcat/logs/sivadmin.error.log"/>
+        <param name="MaxFileSize" value="100MB" />
+        <param name="MaxBackupIndex" value="10" />
+        <param name="encoding" value="UTF-8" />
+        <param name="Threshold" value="ERROR" />
+        <layout class="org.apache.log4j.EnhancedPatternLayout">
+            <param name="ConversionPattern" value="%d %5p [%c{1.}] (%t) %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="grails.app" additivity="false" >
+        <level value="INFO" />
+        <appender-ref ref="mainLog"/>
+        <appender-ref ref="errorLog"/>
+    </logger>
+
+     <!--Setter custom level WARN for spring til WARN da info spammer loggen med info om bean creation -->
+    <logger name="org.codehaus.groovy.grails.commons.spring.OptimizedAutowireCapableBeanFactory" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="mainLog"/>
+        <appender-ref ref="errorLog"/>
+    </logger>
+
+    <logger name="org.codehaus.groovy.grails.web.context.GrailsContextLoaderListener" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="mainLog"/>
+        <appender-ref ref="errorLog"/>
+    </logger>
+
+    <logger name="org.codehaus.groovy" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="mainLog"/>
+        <appender-ref ref="errorLog"/>
+    </logger>
+
+    <logger name="StackTrace" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="errorLog"/>
+    </logger>
+
+    <root>
+        <level value="WARN"/>
+        <appender-ref ref="mainLog"/>
+        <appender-ref ref="errorLog"/>
+    </root>
+
+</log4j:configuration>

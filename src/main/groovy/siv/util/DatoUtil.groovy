@@ -4,7 +4,7 @@ import groovy.time.Duration
 import groovy.time.TimeDuration
 import java.util.Date;
 
-import no.ssb.sivadm.util.TimeUtil;
+import util.TimeUtil;
 
 class DatoUtil {
 	

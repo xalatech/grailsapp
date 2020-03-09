@@ -3,7 +3,7 @@ package siv.util
 import siv.type.SkjemaStatus;
 import sivadm.UtvalgImport;
 import sivadm.Historie;
-import no.ssb.sivadm.exception.SivAdmException;
+import exception.SivAdmException;
 import sivadm.Husholdning;
 import sivadm.IntervjuObjekt;
 import sivadm.Skjema;

@@ -1,21 +1,8 @@
-package siv.model.translator;
+package siv.model.translator
 
-import no.ssb.sivadm.parser.ExtendedUtvalg
-import no.ssb.sivadm.parser.Utvalg;
-import no.ssb.sivadm.util.UtvalgUtil;
-import java.util.List;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import siv.type.AdresseType;
-import siv.type.IntervjuType;
-import sivadm.Adresse;
-import sivadm.Historie;
-import sivadm.Husholdning;
-import sivadm.IntervjuObjekt;
-import sivadm.Periode;
-import sivadm.Skjema;
-import sivadm.Telefon;
-
+import parser.ExtendedUtvalg
+import sivadm.*
+import util.UtvalgUtil
 /**
  * Oversetter intern domenemodell til utvalg.
  */
