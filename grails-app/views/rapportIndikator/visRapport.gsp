@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<meta name="layout" content="main2" />
+<meta name="layout" content="main" />
 <title>Indikator rapport</title>
 </head>
 <body>
@@ -18,7 +18,7 @@
 			<table>
 
 				<tr>
-					<th>Undersøkelse</th>
+					<th>Undersï¿½kelse</th>
 					<th>Brutto svar (%)</th>
 					<th>Netto svar (%)</th>
 					<th>Kontaktrate (%)</th>

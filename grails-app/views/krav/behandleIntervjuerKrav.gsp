@@ -10,7 +10,7 @@
 <html>
     <head>
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	    <meta name="layout" content="main2" />
+	    <meta name="layout" content="main" />
 		<title><g:message code="sil.behandle.intervjuer" default="Behandle intervjuer" /></title>
 		<script type="text/javascript" src="${resource(dir:'js/',file:'behandleIntervjuerKrav.js')}"></script>
 		<script type="text/javascript" src="${resource(dir:'js/jquery',file:'jquery.ui.resizable.js')}"></script>

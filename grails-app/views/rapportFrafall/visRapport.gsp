@@ -6,7 +6,7 @@
 <script type="text/javascript" src="${resource(dir:'js/jquery',file:'jquery.flot.js')}"></script>
 <script type="text/javascript" src="${resource(dir:'js/jquery',file:'jquery.flot.pie.js')}"></script>
 
-<meta name="layout" content="main2" />
+<meta name="layout" content="main" />
 
 <title>Rapport</title>
 

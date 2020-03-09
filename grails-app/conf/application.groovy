@@ -21,7 +21,7 @@ grails.mime.types = [
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
+grails.resources.adhoc.patterns = ['/images/*', '/stylesheets/*', '/javascripts/*', '/plugins/*']
 
 // The default codec used to encode data with ${}
 grails.views.default.codec = "none" // none, html, base64
@@ -77,33 +77,36 @@ environments {
     }
 }
 
-// log4j configuration
-log4j = {
-    // Example of changing the log pattern for the default console appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
-
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-            'org.codehaus.groovy.grails.web.pages',          // GSP
-            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-            'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-            'org.codehaus.groovy.grails.commons',            // core / classloading
-            'org.codehaus.groovy.grails.plugins',            // plugins
-            'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-            'org.springframework',
-            'org.hibernate',
-            'net.sf.ehcache.hibernate'
-}
-
 // Added by the Spring Security Core plugin:
 // grails 2.2.4 = grails.plugins.xxx
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'sivadm.Bruker'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'sivadm.BrukerRolle'
 grails.plugin.springsecurity.authority.className = 'sivadm.Rolle'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        [pattern: '/',               access: ['permitAll']],
+        [pattern: '/error',          access: ['permitAll']],
+        [pattern: '/index',          access: ['permitAll']],
+        [pattern: '/index.gsp',      access: ['permitAll']],
+        [pattern: '/shutdown',       access: ['permitAll']],
+        [pattern: '/assets/**',      access: ['permitAll']],
+        [pattern: '/**/js/**',       access: ['permitAll']],
+        [pattern: '/**/javascripts/**', access: ['permitAll']],
+        [pattern: '/**/stylesheets/**', access: ['permitAll']],
+        [pattern: '/**/css/**',      access: ['permitAll']],
+        [pattern: '/**/images/**',   access: ['permitAll']],
+        [pattern: '/**/favicon.ico', access: ['permitAll']]
+]
 
+grails.plugin.springsecurity.filterChain.chainMap = [
+        [pattern: '/assets/**',      filters: 'none'],
+        [pattern: '/**/js/**',       filters: 'none'],
+        [pattern: '/**/javascripts/**',       filters: 'none'],
+        [pattern: '/**/stylesheets/**',       filters: 'none'],
+        [pattern: '/**/css/**',      filters: 'none'],
+        [pattern: '/**/images/**',   filters: 'none'],
+        [pattern: '/**/favicon.ico', filters: 'none'],
+        [pattern: '/**',             filters: 'JOINED_FILTERS']
+]
 
 // Ekstern konfigurasjon
 def CONFIG_FILE = "${appName}-config.groovy"

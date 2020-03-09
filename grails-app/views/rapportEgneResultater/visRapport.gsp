@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<script type="text/javascript" src="${resource(dir:'js/jquery',file:'jquery.flot.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js/jquery',file:'jquery.flot.pie.js')}"></script>
-	<meta name="layout" content="main2" />
+	<meta name="layout" content="main" />
 	<title>Rapport for egne resultater</title>
 	<g:javascript src="rapportIntervjuer.js"/>
 </head>
@@ -15,7 +15,7 @@
 
 		<h1>Rapport for egne resultater</h1>
 		
-		<p>Datagrunnlaget for denne rapporten baserer seg på alle oppdateringer som kommer fra intervjusystemet (Blaise). Denne rapporten viser mer 
+		<p>Datagrunnlaget for denne rapporten baserer seg pï¿½ alle oppdateringer som kommer fra intervjusystemet (Blaise). Denne rapporten viser mer 
 		enn bare sanntidsbildet.</p>		
 		
 		<br/>
@@ -57,9 +57,9 @@
 					<th>Nektere</th>
 					<th>Forhindret</th>
 					<th>Ikke truffet</th>
-					<th>Andre årsaker</th>
+					<th>Andre ï¿½rsaker</th>
 					<th>Avganger</th>
-					<th>Overføringer</th>
+					<th>Overfï¿½ringer</th>
 				</tr>
 				<g:if test="${intervjuerResultat != null}">
 					<tr class="${intervjuerResultat.navn == 'Summer' ? 'sum2' : (intervjuerResultat.totaltAntall > 0 ? 'greencolor' : 'odd')}">

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="layout" content="main2" />
+	<meta name="layout" content="main" />
     <g:javascript src="kolon.js"/>
     <g:javascript src="fullforKlokkeslett.js"/>
 </head>

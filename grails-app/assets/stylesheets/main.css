@@ -78,6 +78,7 @@ html * {
 	position: absolute; 
 	top: 20px;
 	left: 210px;
+    width: 80%;
 }
 
 .slink a:link{

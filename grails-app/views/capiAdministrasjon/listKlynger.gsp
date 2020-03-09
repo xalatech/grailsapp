@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="layout" content="main2" />
+<meta name="layout" content="main" />
 
 <g:javascript library="prototype" />
 <g:javascript src="capi_project_ajax_select.js"/>

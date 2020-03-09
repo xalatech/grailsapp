@@ -60,6 +60,7 @@ dependencies {
     compile 'commons-net:commons-net:3.6'
     compile 'org.grails.plugins:external-config:1.0.0'
     compile "io.micronaut:micronaut-inject-groovy"
+    compile "org.grails.plugins:twitter-bootstrap:3.3.4"
     console "org.grails:grails-console"
     profile "org.grails.profiles:web"
     runtime "org.glassfish.web:el-impl:2.1.2-b03"
@@ -67,6 +68,7 @@ dependencies {
     runtime "org.apache.tomcat:tomcat-jdbc"
     runtime "javax.xml.bind:jaxb-api:2.3.0"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:3.0.10"
+    runtime "org.grails.plugins:resources:1.2.14"
     testCompile "org.grails:grails-gorm-testing-support"
     testCompile "org.mockito:mockito-core"
     testCompile "org.grails:grails-web-testing-support"

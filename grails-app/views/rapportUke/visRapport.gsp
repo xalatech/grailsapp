@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<meta name="layout" content="main2" />
+<meta name="layout" content="main" />
 <title>Sil ukerapport</title>
 </head>
 <body>
@@ -10,7 +10,7 @@
 
 		<h1>Timeregistrering pr uke - rapport</h1>
 		
-		<p>Denne rapporten viser antall timer intervjuerne har ført både totalt dette året, og for de siste fire ukene. Tallene hentes fra registrerte krav. Det betyr i praksis at intervjuerne må ha godkjent og sendt timeføringene inn. Det er derimot ikke noe krav at kravene skal være godkjent.</p>
+		<p>Denne rapporten viser antall timer intervjuerne har fï¿½rt bï¿½de totalt dette ï¿½ret, og for de siste fire ukene. Tallene hentes fra registrerte krav. Det betyr i praksis at intervjuerne mï¿½ ha godkjent og sendt timefï¿½ringene inn. Det er derimot ikke noe krav at kravene skal vï¿½re godkjent.</p>
 		<br>
 		
 		<div class="dialog">

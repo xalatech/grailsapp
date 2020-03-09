@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main2" />
+        <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'kjorebok.label', default: 'Kjørebok')}" />
         <title><g:message code="default.update.label" args="[entityName]" /></title>
         <g:javascript library="prototype" />

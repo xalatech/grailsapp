@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<meta name="layout" content="main2" />
+<meta name="layout" content="main" />
 <title>Rapport om skjevheter</title>
 </head>
 <body>
@@ -21,10 +21,10 @@
 		
 		<div class="list">
 			
-			<h2>Kjønn</h3>
+			<h2>Kjï¿½nn</h3>
 			<table>
 				<tr>
-					<th>Kjønn</th>
+					<th>Kjï¿½nn</th>
 					<th>Bruttoutvalg</th>
 					<th>Intervju</th>
 					<th>Frafall</th>

@@ -1,11 +1,13 @@
 package sivadm
 
+import java.text.SimpleDateFormat
+
 class DatoVelgerTagLib {
 	
 	def datoVelger =  { attrs, body ->
-		
+		def datePattern = "dd.MM.yyyy"
 		def name = attrs['name']
-		def date = attrs['value'] ? attrs['value'].format('dd.MM.yyyy') : ""
+		def date = attrs['value'] ? new SimpleDateFormat(datePattern).format(attrs['value']) : ""
 		def id = attrs['id']
 		def onChange
 		if(attrs['onChange']) {

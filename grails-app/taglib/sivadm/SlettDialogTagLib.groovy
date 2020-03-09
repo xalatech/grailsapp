@@ -42,16 +42,6 @@ class SlettDialogTagLib {
 			script += "if(form) { for(var i in form) { if(form[i].id == \"id\") {"
 			script += "form[i].value = slettId;break;}}}return false;}</script>" 
 		}
-		else {
-			script = "<script type=\"text/javascript\" src=\"${resource(dir:'js/jquery',file:'jquery.ui.resizable.js')}\"></script>\n"
-			script += "<script type=\"text/javascript\" src=\"${resource(dir:'js/jquery',file:'jquery.ui.position.js')}\"></script>\n"
-			script += "<script type=\"text/javascript\" src=\"${resource(dir:'js/jquery',file:'jquery.ui.mouse.js')}\"></script>\n"
-			script += "<script type=\"text/javascript\" src=\"${resource(dir:'js/jquery',file:'jquery.ui.draggable.js')}\"></script>\n"
-			script += "<script type=\"text/javascript\" src=\"${resource(dir:'js/jquery',file:'jquery.ui.dialog.js')}\"></script>\n"
-			script += "<script type=\"text/javascript\" src=\"${resource(dir:'js/jquery',file:'jquery.ui.core.js')}\"></script>\n"
-			script += "<script type=\"text/javascript\" src=\"${resource(dir:'js/jquery',file:'jquery.ui.widget.js')}\"></script>\n"
-			script += "<script type=\"text/javascript\" src=\"${resource(dir:'js',file:'slettDialog.js')}\"></script>\n"
-		}
 		
 		def msg
 		

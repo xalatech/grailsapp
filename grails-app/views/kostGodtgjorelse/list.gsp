@@ -2,18 +2,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<meta name="layout" content="main2" />
-<title>Rapport - Kostgodtgjørelse</title>
+<meta name="layout" content="main" />
+<title>Rapport - Kostgodtgjï¿½relse</title>
 </head>
 <body>
 	
 	<div class="body">
 		
-		<h1>Liste over godkjente kostgodtgjørelser som manuelt skal legges inn i SAP</h1>
+		<h1>Liste over godkjente kostgodtgjï¿½relser som manuelt skal legges inn i SAP</h1>
 		
-		<p>Dette er en liste med krav om kostgodtgjørelse som allerede er godkjent. Listen er sortert etter godkjentdato, med de nyeste øverst. Klikk på den grønne
-		haken til høyre når en kostgodtgjørelse er lagt inn i SAP. Linjen vil da bli grønn for å vise at kravet allerede er lagt inn i SAP. Det røde krysset vil svitsje
-		tilbake til ubehandlet (hvis man skulle trykke på den grønne haken ved en feil).</p>
+		<p>Dette er en liste med krav om kostgodtgjï¿½relse som allerede er godkjent. Listen er sortert etter godkjentdato, med de nyeste ï¿½verst. Klikk pï¿½ den grï¿½nne
+		haken til hï¿½yre nï¿½r en kostgodtgjï¿½relse er lagt inn i SAP. Linjen vil da bli grï¿½nn for ï¿½ vise at kravet allerede er lagt inn i SAP. Det rï¿½de krysset vil svitsje
+		tilbake til ubehandlet (hvis man skulle trykke pï¿½ den grï¿½nne haken ved en feil).</p>
 		
 		<br>
 		

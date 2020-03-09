@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main2" />
+        <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'timeforing.label', default: 'Timeforing')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
         <g:javascript src="kolon.js"/>

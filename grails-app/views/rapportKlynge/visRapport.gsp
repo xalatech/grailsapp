@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<script type="text/javascript" src="${resource(dir:'js/jquery',file:'jquery.flot.js')}"></script>
 	<script type="text/javascript" src="${resource(dir:'js/jquery',file:'jquery.flot.pie.js')}"></script>
-	<meta name="layout" content="main2" />
+	<meta name="layout" content="main" />
 	<title>Resultatrapport klynger</title>
 	<g:javascript src="rapportIntervjuer.js"/>
 	<g:javascript>

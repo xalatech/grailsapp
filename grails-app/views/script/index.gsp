@@ -2,15 +2,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-<meta name="layout" content="main2"/>
+<meta name="layout" content="main"/>
 <title>Insert title here</title>
 </head>
 <body>
   <div class="body">
-  	<h1>Manuelle script som kan kjøres av administrator</h1>
+  	<h1>Manuelle script som kan kjï¿½res av administrator</h1>
   	
   	<ul>
-  		<li><g:link action="slettAlleKravOgTimeforinger">Slett alle krav og timeføringer i sivadm (ment kun for bruk i test)</g:link></li>
+  		<li><g:link action="slettAlleKravOgTimeforinger">Slett alle krav og timefï¿½ringer i sivadm (ment kun for bruk i test)</g:link></li>
   	</ul>
   	
   </div>
