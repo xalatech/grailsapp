@@ -1,7 +1,21 @@
-<h1>Sivadm <g:meta name="app.version"/>${grails.util.Environment.current.name}</h1>
+<div class="logo">
+	<a href="/" class="simple-text logo-mini"></a>
+	<a href="/" class="simple-text logo-normal">
+		Siv Admin <g:meta name="app.version"/>
+	</a>
+</div>
+<div class="sidebar-wrapper">
+       <ul class="nav">
+		   <li class="dashboard-nav active ">
+			   <a href="/">
+				   Dashboard
+			   </a>
+		   </li>
 <sec:ifLoggedIn>
 	<sec:ifAnyGranted roles="ROLE_PLANLEGGER, ROLE_INTERVJUERKONTAKT, ROLE_ADMIN">
-		<h2>Undersøkelse</h2>
+		<div class="sidelist-header-name">
+			<span>Undersøkelse</span>
+		</div>
 		<li><g:link controller="prosjekt" action="list">Prosjekt</g:link></li>
 		<li><g:link controller="skjema" action="list">Skjema</g:link></li>
 		<li><g:link controller="utvalgAdministrasjon" action="selectSkjema">Utvalg</g:link></li>
@@ -15,7 +29,10 @@
 	</sec:ifAnyGranted>
 	
 	<sec:ifAnyGranted roles="ROLE_PLANLEGGER, ROLE_INTERVJUERKONTAKT, ROLE_ADMIN, ROLE_SPORINGSPERSON, ROLE_CAPITILDELING, ROLE_SUPERVISOR">
-		<h2>Administrasjon</h2>
+		<div class="sidelist-header-name">
+			<span>Administrasjon</span>
+		</div>
+
 	</sec:ifAnyGranted>
 	
 	<sec:ifAnyGranted roles="ROLE_PLANLEGGER, ROLE_INTERVJUERKONTAKT, ROLE_ADMIN, ROLE_SPORINGSPERSON, ROLE_CAPITILDELING, ROLE_SUPERVISOR">
@@ -48,7 +65,10 @@
 	</sec:ifAllGranted>
 
 	<sec:ifAnyGranted roles="ROLE_INTERVJUER, ROLE_ADMIN">
-		<h2>Intervjuer</h2>
+		<div class="sidelist-header-name">
+			<span>Intervjuer</span>
+		</div>
+
 		<li><g:link controller="rapportEgneResultater" action="visRapport" params="[ikkeGenerer: 'true']">Egne Resultater</g:link></li>
 		<li><g:link controller="intervjuerArbeidsflate" action="list">Mine CATI-skjema</g:link></li>
 		<li><g:link controller="intervjuerArbeidsflate" action="listCapi">Mine CAPI-skjema</g:link></li>
@@ -58,7 +78,9 @@
 	</sec:ifAnyGranted>
 
 	<sec:ifAnyGranted roles="ROLE_SIL, ROLE_ADMIN">
-		<h2>SIL</h2>
+		<div class="sidelist-header-name">
+			<span>SIL</span>
+		</div>
 		<li><g:link controller="krav" action="administrasjon"  title="${message(code: 'meny.sil.administrasjon.tooltip', default: 'Administrasjon')}"> <g:message code="meny.sil.administrasjon" default="Administrasjon" /></g:link></li>
 		<li><g:link controller="krav" action="intervjuerKontroll" title="${message(code: 'meny.sil.intervjuere.manuell.kontroll.tooltip', default: 'Intervjuere til kontroll')}"><g:message code="meny.sil.intervjuere.manuell.kontroll" default="Intervjuere til kontroll" /></g:link></li>
 		<li><g:link controller="krav" action="searchResult" title="${message(code: 'meny.sil.sok.krav.tooltip', default: '')}"><g:message code="meny.sil.sok.krav" /></g:link></li>
@@ -72,3 +94,28 @@
 	</sec:ifAnyGranted>
 
 </sec:ifLoggedIn>
+</ul>
+</div>
+
+<script>
+	$(function(){
+		var current = location.pathname;
+		var res = current.split("/");
+
+		$('.nav li a').each(function(){
+			var $this = $(this);
+			$this.parent().removeClass('active');
+
+			if($this.attr('href').includes(res[1]) !== false) {
+				if(res[1] !== '') {
+					$this.parent().addClass('active');
+				}
+				else {
+					$(".dashboard-nav").addClass('active');
+				}
+			}
+
+
+		})
+	})
+</script>

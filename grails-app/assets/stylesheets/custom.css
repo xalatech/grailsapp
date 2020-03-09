@@ -1,0 +1,109 @@
+.sidelist-header-name {
+    font-width: 700;
+    display: flex;
+    width: 100%;
+    font-size: 14px;
+    white-space: nowrap;
+    position: relative;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    text-transform: uppercase !important;
+    color: rgba(0, 0, 0, 0.90) !important;
+    padding: 0.5rem 1rem;
+    margin: 5px;
+    background: #5a6268;
+}
+
+.sidebar .nav li>a, .off-canvas-sidebar .nav li>a {
+    margin: 10px 15px 0;
+    color: #FFFFFF;
+    display: block;
+    text-decoration: none;
+    position: relative;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 3px 0px;
+    line-height: 20px;
+    opacity: .9;
+}
+
+.sidebar .sidebar-wrapper, .off-canvas-sidebar .sidebar-wrapper {
+    position: relative;
+    height: calc(100vh - 75px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 290px;
+    z-index: 4;
+    padding-bottom: 100px;
+}
+
+.sidebar, .off-canvas-sidebar {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    bottom: 0;
+    width: 290px;
+    left: 0;
+    z-index: 1030;
+    border-right: 1px solid #ddd;
+}
+
+.main-panel {
+    position: relative;
+    float: right;
+    width: calc(100% - 290px);
+    background-color: #f4f3ef;
+    -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -ms-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+}
+
+.sidebar-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.nav-link {
+    padding-right: .5rem !important;
+    padding-left: .5rem !important;
+}
+
+/* Fixes dropdown menus placed on the right side */
+.ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+}
+
+.sidebar .sidebar-wrapper li.active>a:not([data-toggle="collapse"]):after, .sidebar .sidebar-wrapper li.active>[data-toggle="collapse"]+div .nav li:after {
+    border-right: 17px solid #f4f3ef;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: -17px;
+    opacity: 1;
+    top: -8px;
+    transition: opacity 150ms ease-in;
+}
+
+.sidebar .sidebar-wrapper li.active>a:not([data-toggle="collapse"]):before, .sidebar .sidebar-wrapper li.active>[data-toggle="collapse"]+div .nav li:before {
+    border-right: 17px solid #DDDDDD;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: -16px;
+    opacity: 1;
+    top: -8px;
+    transition: opacity 150ms ease-in;
+}

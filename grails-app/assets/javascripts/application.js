@@ -8,6 +8,9 @@
 //= require jquery-3.3.1.min
 //= require bootstrap
 //= require popper.min
+//= require paper-dashboard/plugins/perfect-scrollbar.jquery.min.js
+//= require paper-dashboard/plugins/bootstrap-notify.js
+//= require paper-dashboard/paper-dashboard.min.js
 //= require_self
 
 if (typeof jQuery !== 'undefined') {

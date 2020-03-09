@@ -9,7 +9,8 @@
 *
 *= require bootstrap
 *= require grails
-*= require main
+*= require paper-dashboard/paper-dashboard
 *= require mobile
+*= require custom
 *= require_self
 */
