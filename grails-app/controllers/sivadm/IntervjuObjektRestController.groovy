@@ -270,8 +270,8 @@ class IntervjuObjektRestController {
 	}
 	
 	private void sjekkAutentisering() {
-		def brukerNavn = grailsApplication.config.siv.basicauth.brukernavn
-		def passord = grailsApplication.config.siv.basicauth.passord
+		def brukerNavn = grailsApplication.config.getProperty("siv.basicauth.brukernavn")
+		def passord = grailsApplication.config.getProperty("siv.basicauth.passord")
 		if(!BasicAuthUtil.erAutentisert(request, brukerNavn, passord)) {
 				response.status = 401
 				def responsMap = ['status': 'ikke autentisert']

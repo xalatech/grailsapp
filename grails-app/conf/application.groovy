@@ -117,15 +117,9 @@ File localConfigFile = new File(localConfigFilePath)
 File externalConfigFile = new File(externalConfigFilePath)
 
 if(localConfigFile.exists()) {
+    print localConfigFile
     println "Including configuration file: ${localConfigFilePath}"
     grails.config.locations = [
-            "file:${localConfigFilePath}",
+            "file:conf/local/sivadmin-config.groovy",
     ]
-}
-else if(externalConfigFile.exists()) {
-    println "Including configuration file: ${externalConfigFilePath}"
-    grails.config.locations << "file:${externalConfigFilePath}"
-}
-else {
-    throw new Error("Under oppstart av ${appName} fantes ikke ${externalConfigFilePath}, oppstart avbrytes!");
 }

@@ -45,8 +45,8 @@ class IntervjuerAdministrasjonController {
 
 		Boolean ikkeRettPaaSykepenger = params.ikkeRettPaaSykepenger ? true : false
 
-		def mottaker = grailsApplication.config.admin.mail.adresse
-		def avsender = grailsApplication.config.avsender.sivadmin.epost
+		def mottaker = grailsApplication.config.getProperty("admin.mail.adresse")
+		def avsender = grailsApplication.config.getProperty("avsender.sivadmin.epost")
 		def ccStr = intervjuer?.epostJobb
 		def replyToStr = intervjuer?.epostJobb
 		def subjectStr = "Egenmelding fra intervjuer " + intervjuer?.navn + " (" + intervjuer?.initialer + ")"
@@ -110,8 +110,8 @@ class IntervjuerAdministrasjonController {
 		cal.set Calendar.MINUTE, Integer.valueOf(pcTelefonCommand.tilKlokkeslett.substring(3)).intValue()
 		Date til = cal.getTime()
 
-		def mottaker = grailsApplication.config.admin.mail.adresse
-		def avsender = grailsApplication.config.avsender.sivadmin.epost
+		def mottaker = grailsApplication.config.getProperty("admin.mail.adresse")
+		def avsender = grailsApplication.config.getProperty("avsender.sivadmin.epost")
 		def ccStr = intervjuer?.epostJobb
 		def replyToStr = intervjuer?.epostJobb
 		def subjectStr = "Rapport om teknisk problem fra intervjuer " + intervjuer?.navn + " (" + intervjuer?.initialer + ")"
@@ -156,8 +156,8 @@ class IntervjuerAdministrasjonController {
 			return
 		}
 
-		def mottaker = grailsApplication.config.admin.mail.adresse
-		def avsender = grailsApplication.config.avsender.sivadmin.epost
+		def mottaker = grailsApplication.config.getProperty("admin.mail.adresse")
+		def avsender = grailsApplication.config.getProperty("avsender.sivadmin.epost")
 		def ccStr = intervjuer?.epostJobb
 		def replyToStr = intervjuer?.epostJobb
 		def subjectStr = "Søknad om permisjon fra intervjuer " + intervjuer?.navn + " (" + intervjuer?.initialer + ")"
@@ -207,8 +207,8 @@ class IntervjuerAdministrasjonController {
 		
 		Boolean aleneMedOmsorg = params.alene ? true : false
 
-		def mottaker = grailsApplication.config.admin.mail.adresse
-		def avsender = grailsApplication.config.avsender.sivadmin.epost
+		def mottaker = grailsApplication.config.getProperty("admin.mail.adresse")
+		def avsender = grailsApplication.config.getProperty("avsender.sivadmin.epost")
 		def ccStr = intervjuer?.epostJobb
 		def replyToStr = intervjuer?.epostJobb
 		def subjectStr = "Egenmelding angående syke barn fra intervjuer " + intervjuer?.navn + " (" + intervjuer?.initialer + ")"
@@ -256,8 +256,8 @@ class IntervjuerAdministrasjonController {
 			return
 		}
 
-		def mottaker = grailsApplication.config.admin.mail.adresse
-		def avsender = grailsApplication.config.avsender.sivadmin.epost
+		def mottaker = grailsApplication.config.getProperty("admin.mail.adresse")
+		def avsender = grailsApplication.config.getProperty("avsender.sivadmin.epost")
 		def ccStr = intervjuer?.epostJobb
 		def replyToStr = intervjuer?.epostJobb
 		def subjectStr = "Søknad om ferie fra intervjuer " + intervjuer?.navn + " (" + intervjuer?.initialer + ")"

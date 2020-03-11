@@ -1,5 +1,5 @@
-grails.serverURL = "http://localhost:8090/sivadmin"
-server.port = 8090
+grails.serverURL = "http://localhost:8080/sivadmin"
+
 blaiseApplicationPath = "\\\\Kpwi-blaise\\Siv"
 blaiseSkjemaPath = "\\\\Kpwi-blaise\\Siv\\skjema"
 blaiseCapiSkjemaPath = "\\\\Kpwi-blaise\\Siv\\skjema"
@@ -15,9 +15,9 @@ grails.mail.password = ""
 
 blaise.connector.url="http://localhost:8090"
 blaise.connector.user=
-blaise.connector.password=
+        blaise.connector.password=
 
-admin.mail.adresse = "vak@ssb.no"
+                admin.mail.adresse = "vak@ssb.no"
 avsender.sivadmin.epost = "mailsend_java_siv@ssb.no"
 
 sil.sap.fil.lagre.lokalt = true
@@ -66,10 +66,10 @@ grails.plugin.springsecurity.cas.key = 'grails-spring-security-cas'
 grails.plugin.springsecurity.cas.useSingleSignout = false
 grails.plugin.springsecurity.logout.afterLogoutUrl = '${cas.url}/logout'
 
-		
+
 dataSource {
     dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-    url = "jdbc:h2:tcp://localhost/~/sivadmin2"
+    url = "jdbc:h2:tcp://localhost/~/sivadmin"
 }
 
 // Logging til sdtout

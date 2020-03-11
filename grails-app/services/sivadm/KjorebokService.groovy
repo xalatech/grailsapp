@@ -197,7 +197,7 @@ class KjorebokService {
 
 	def ryddKjoreboker = {
 
-		String antallAar = grailsApplication.config.behold.fravaer.antall.aar
+		String antallAar = grailsApplication.config.getProperty("behold.fravaer.antall.aar")
 		log.info("Kjører ryddKjoreboker, sletter kjoreboker eldre enn " + antallAar + " år")
 
 		Calendar cal = Calendar.getInstance()

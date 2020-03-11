@@ -57,6 +57,7 @@ dependencies {
     compile "org.hibernate:hibernate-core:5.4.0.Final"
     compile "org.grails.plugins:gsp"
     compile "org.grails.plugins:spring-security-core:4.0.0"
+    compile 'org.grails.plugins:spring-security-cas:3.0.1'
     compile 'commons-net:commons-net:3.6'
     compile 'org.grails.plugins:external-config:1.0.0'
     compile "io.micronaut:micronaut-inject-groovy"

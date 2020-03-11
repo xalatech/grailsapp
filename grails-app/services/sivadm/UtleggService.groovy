@@ -8,7 +8,7 @@ class UtleggService {
 
     def ryddUtlegg = {
 
-        String antallAar = grailsApplication.config.behold.utlegg.antall.aar
+        String antallAar = grailsApplication.config.getProperty("behold.utlegg.antall.aar")
         log.info("Kjører ryddUtlegg, sletter utlegg eldre enn " + antallAar + " år")
 
         Calendar cal = Calendar.getInstance()

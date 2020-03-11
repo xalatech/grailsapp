@@ -724,7 +724,7 @@ class KravService {
 	}
 	
 	List<Intervjuer> finnIntervjuereTilManuellKontroll() {
-		return finnIntervjuereTilManuellKontroll(grailsApplication.config.sil.intervjuer.kontroll.prosent)
+		return finnIntervjuereTilManuellKontroll(grailsApplication.config.getProperty("sil.intervjuer.kontroll.prosent"))
 	}
 	
 	List<Intervjuer> finnIntervjuereTilManuellKontroll(int prosent) {
@@ -1441,7 +1441,7 @@ class KravService {
 	}
 
 	def slettSilMeldinger = {
-		String antallAar = grailsApplication.config.behold.fravaer.antall.aar
+		String antallAar = grailsApplication.config.getProperty("behold.fravaer.antall.aar")
 		log.info("Kjører slettSilMeldinger, nuller referanser til silmelding eldre enn " + (antallAar - 1) + " år og 11 måneder")
 
 		Calendar cal = Calendar.getInstance()
@@ -1464,7 +1464,7 @@ class KravService {
 
 	def ryddKravUtenKjorebok = {
 
-		String antallAar = grailsApplication.config.behold.fravaer.antall.aar
+		String antallAar = grailsApplication.config.getProperty("behold.fravaer.antall.aar")
 		log.info("Kjører ryddKravUtenKjorebok, sletter krav eldre enn " + antallAar + " år")
 
 		Calendar cal = Calendar.getInstance()

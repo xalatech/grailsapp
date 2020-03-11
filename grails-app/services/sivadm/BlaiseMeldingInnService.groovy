@@ -1,15 +1,10 @@
 package sivadm
 
-import java.util.List
-import java.util.Map
-
-import util.TimeUtil
-
-// import grails.core.ConfigurationHolder
-
 import siv.search.MeldingSok
 import siv.service.data.KontaktInformasjonServiceData
 import siv.type.MeldingInnType
+import util.TimeUtil
+// import grails.core.ConfigurationHolder
 
 class BlaiseMeldingInnService {
 
@@ -77,10 +72,10 @@ class BlaiseMeldingInnService {
     }
 	
 	def ryddMeldingInn() {
-		log.info("Kjører ryddMeldingInn, sletter meldinger eldre enn " + grailsApplication.config.behold.meldinger.inn.antall.dager + " dager")
+		log.info("Kjører ryddMeldingInn, sletter meldinger eldre enn " + grailsApplication.config.getProperty("behold.meldinger.inn.antall.dager") + " dager")
 		
 		Calendar cal = Calendar.getInstance()
-		cal.add(Calendar.DAY_OF_MONTH, (-1 * grailsApplication.config.behold.meldinger.inn.antall.dager))
+		cal.add(Calendar.DAY_OF_MONTH, (-1 * grailsApplication.config.getProperty("behold.meldinger.inn.antall.dager")))
 		
 		slettMeldingerInnEldreEnnDato(cal.getTime())
 	}

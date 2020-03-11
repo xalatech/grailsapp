@@ -2,6 +2,7 @@ package sivadm
 
 import siv.data.UtvalgtCapiIntervjuObjekt;
 import siv.data.UtvalgtCapiSkjema;
+import grails.core.GrailsApplication
 
 import grails.plugin.springsecurity.annotation.Secured
 
@@ -11,7 +12,8 @@ class IntervjuerArbeidsflateController {
 	def intervjuerService
 	def brukerService
 	def systemKommandoService
-	
+	GrailsApplication grailsApplication
+
 	def index = {
 	}
 	
@@ -26,8 +28,8 @@ class IntervjuerArbeidsflateController {
 		def utvalgtSkjemaList = intervjuerInitialer ? intervjuerService.getUtvalgteSkjemaForIntervjuer(intervjuerInitialer) : []
 		utvalgtSkjemaList.sort { it.skjemaKortNavn.toUpperCase() }
 
-		def blaiseApplicationPath = grailsApplication.config.blaiseApplicationPath
-		def blaiseSkjemaPath = grailsApplication.config.blaiseSkjemaPath
+		def blaiseApplicationPath = grailsApplication.config.getProperty("blaiseApplicationPath")
+		def blaiseSkjemaPath = grailsApplication.config.getProperty("blaiseSkjemaPath")
 		
 		[
 			utvalgtSkjemaInstanceList: utvalgtSkjemaList, 
@@ -45,8 +47,8 @@ class IntervjuerArbeidsflateController {
 		flash.message = "Du starter nå å intervju på skjema: " + params.skjemaKortNavn
 		
 		def startIntervju = "true"
-		def blaiseApplicationPath = grailsApplication.config.blaiseApplicationPath
-		def blaiseSkjemaPath = grailsApplication.config.blaiseSkjemaPath
+		def blaiseApplicationPath = grailsApplication.config.getProperty("blaiseApplicationPath")
+		def blaiseSkjemaPath = grailsApplication.config.getProperty("blaiseSkjemaPath")
 		def skjemaKortNavn = params.skjemaKortNavn
 		def skjemaVersjon = params.skjemaVersjon
 		def appletModus = params.appletModus // BLAISE, BLAISE_TEST eller RETNINGSLINJER
@@ -60,13 +62,13 @@ class IntervjuerArbeidsflateController {
 	def listCapi = {
 		String intervjuerInitialer = brukerService.getCurrentUserName()
 		
-		def blaiseApplicationPath = grailsApplication.config.blaiseApplicationPath
-		def blaiseCapiSkjemaPath = grailsApplication.config.blaiseCapiSkjemaPath
-		def localSkjemaPath = grailsApplication.config.localSkjemaPath
+		def blaiseApplicationPath = grailsApplication.config.getProperty("blaiseApplicationPath")
+		def blaiseCapiSkjemaPath = grailsApplication.config.getProperty("blaiseCapiSkjemaPath")
+		def localSkjemaPath = grailsApplication.config.getProperty("localSkjemaPath")
 		
-		def localSystemKommandoPath = grailsApplication.config.localSystemKommandoPath
-		def serverSystemKommandoPath = grailsApplication.config.serverSystemKommandoPath
-		def serverSystemKommandoHttpPath = grailsApplication.config.serverSystemKommandoHttpPath
+		def localSystemKommandoPath = grailsApplication.config.getProperty("localSystemKommandoPath")
+		def serverSystemKommandoPath = grailsApplication.config.getProperty("serverSystemKommandoPath")
+		def serverSystemKommandoHttpPath = grailsApplication.config.getProperty("serverSystemKommandoHttpPath")
 		
 		List<UtvalgtCapiSkjema> utvalgtCapiSkjemaInstanceList = intervjuerService.getUtvalgteCapiSkjemaForIntervjuer(intervjuerInitialer)
 		

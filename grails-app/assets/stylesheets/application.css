@@ -12,5 +12,6 @@
 *= require paper-dashboard/paper-dashboard
 *= require mobile
 *= require custom
+*= require datepicker/css/bootstrap-datepicker.standalone.min.css
 *= require_self
 */

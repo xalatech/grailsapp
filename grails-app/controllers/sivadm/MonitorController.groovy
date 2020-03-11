@@ -1,11 +1,7 @@
 package sivadm
 
-import java.util.Date;
-import siv.type.ProsessNavn;
-import groovyx.net.http.*
 import org.apache.commons.net.ftp.FTPClient
-import grails.plugin.springsecurity.annotation.Secured
-
+import siv.type.ProsessNavn
 
 class MonitorController {
 
@@ -70,12 +66,12 @@ class MonitorController {
     	def monitor = new Monitor(navn: "${message(code: 'monitor.database.overskrift')}")
     	try{
             def antallBrukere = Bruker.count()
-            def datakilde = grailsApplication.config.dataSource.jndiName ? grailsApplication.config.dataSource.jndiName : grailsApplication.config.dataSource.url
+            def datakilde = grailsApplication.config.getProperty("dataSource.jndiName") ? grailsApplication.config.getPropert("dataSource.jndiName") : grailsApplication.config.getProperty("dataSource.url")
             monitor.beskrivelse = "${message(code: 'monitor.database.melding', args: [antallBrukere, datakilde])}" 
             monitor.status = true
         } catch (Exception e) {
             monitor.status = false
-            monitor.beskrivelse = "${message(code: 'monitor.database.feil', args: [grailsApplication.config.dataSource.url])}"
+            monitor.beskrivelse = "${message(code: 'monitor.database.feil', args: [grailsApplication.config.getProperty("dataSource.url")])}"
             monitor.feilmelding = e.message
             log.error MONITOR_ERROR + "Feil i kommunikasjon med database: " + e.message
         }
@@ -85,25 +81,25 @@ class MonitorController {
 	private Monitor sjekkSilFtp() {
 		def monitor = new Monitor(navn: "SIL FTP")
 		
-		if(grailsApplication.config.sil.sap.fil.lagre.lokalt) {
+		if(grailsApplication.config.getProperty("sil.sap.fil.lagre.lokalt")) {
 			monitor.status = true
-			monitor.beskrivelse = "SIL er satt opp til å lagre SAP filer til filområde " + grailsApplication.config.sil.sap.fil.lokal.katalog
+			monitor.beskrivelse = "SIL er satt opp til å lagre SAP filer til filområde " + grailsApplication.config.getProperty("sil.sap.fil.lokal.katalog")
 		}
 		else {		
-			def ftp = "host: '" + grailsApplication.config.sil.sap.fil.ftp.host + ":" + grailsApplication.config.sil.sap.fil.ftp.port + "'"
-			if(grailsApplication.config.sil.sap.fil.ftp.katalog && grailsApplication.config.sil.sap.fil.ftp.katalog != "") {
-				ftp = ftp + ", katalog: '" + grailsApplication.config.sil.sap.fil.ftp.katalog + "'"
+			def ftp = "host: '" + grailsApplication.config.getProperty("sil.sap.fil.ftp.host") + ":" + grailsApplication.config.getProperty("sil.sap.fil.ftp.port") + "'"
+			if(grailsApplication.config.getProperty("sil.sap.fil.ftp.katalog") && grailsApplication.config.getProperty("sil.sap.fil.ftp.katalog") != "") {
+				ftp = ftp + ", katalog: '" + grailsApplication.config.getProperty("sil.sap.fil.ftp.ksatalog") + "'"
 			}
 			
-			ftp = ftp + ", brukernavn: '" + grailsApplication.config.sil.sap.fil.ftp.bruker + "'"
+			ftp = ftp + ", brukernavn: '" + grailsApplication.config.getProperty("sil.sap.fil.ftp.bruker") + "'"
 			
 			monitor.beskrivelse = "Sjekker om SivAdm/SIL har kontakt med ftp område (" + ftp + ") for skriving av SAP filer"
 			
 			def ftpClient = new FTPClient()
 			
 			try {
-				ftpClient.connect(grailsApplication.config.sil.sap.fil.ftp.host, grailsApplication.config.sil.sap.fil.ftp.port)
-				boolean isLoggedIn = ftpClient.login(grailsApplication.config.sil.sap.fil.ftp.bruker, grailsApplication.config.sil.sap.fil.ftp.passord)
+				ftpClient.connect(grailsApplication.config.getProperty("sil.sap.fil.ftp.host"), grailsApplication.config.getProperty("sil.sap.fil.ftp.port"))
+				boolean isLoggedIn = ftpClient.login(grailsApplication.config.getProperty("sil.sap.fil.ftp.bruker"), grailsApplication.config.getProperty("sil.sap.fil.ftp.passord"))
 				
 				if(isLoggedIn) {
 					monitor.status = true
@@ -129,7 +125,7 @@ class MonitorController {
     private Monitor sjekkBlaise() {
    	 def monitor = new Monitor(navn: "${message(code: 'monitor.blaise.overskrift')}")
    	 try {
-            String blaiseUrl = grailsApplication.config.sync.blaise.url
+            String blaiseUrl = grailsApplication.config.getProperty("sync.blaise.url")
 			blaiseUrl +=  "/Service.svc/help"
             def url = new URL( blaiseUrl )
             url.text
@@ -137,7 +133,7 @@ class MonitorController {
             monitor.status = true
         } catch (Exception e){
             monitor.status = false
-			String blaiseUrl = grailsApplication.config.sync.blaise.url 
+			String blaiseUrl = grailsApplication.config.getProperty("sync.blaise.url ")
 			blaiseUrl += "/Service.svc/help"
             monitor.beskrivelse = "${message(code: 'monitor.blaise.feil', args: [blaiseUrl])}"
             monitor.feilmelding = "Feil i kommunikasjon med blaise: " + e.message
@@ -150,7 +146,7 @@ class MonitorController {
 		def monitor = new Monitor(navn: "${message(code: 'monitor.cas.overskrift')}")
 		def casUrl
 		try {
-			casUrl = grailsApplication.config.cas.url 
+			casUrl = grailsApplication.config.getProperty("cas.url ")
 			def url = new URL( casUrl )
 			url.text
 			monitor.beskrivelse = "${message(code: 'monitor.cas.melding', args: [casUrl])}"

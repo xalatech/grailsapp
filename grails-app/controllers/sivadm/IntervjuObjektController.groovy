@@ -362,8 +362,8 @@ class IntervjuObjektController {
 		def intervjuObjektInstance = IntervjuObjekt.get(params.id)
 		
 		if(intervjuObjektInstance) {
-			def blaiseApplicationPath = grailsApplication.config.blaiseApplicationPath
-			def blaiseCapiSkjemaPath = grailsApplication.config.blaiseCapiSkjemaPath
+			def blaiseApplicationPath = grailsApplication.config.getProperty("blaiseApplicationPath")
+			def blaiseCapiSkjemaPath = grailsApplication.config.getProperty("blaiseCapiSkjemaPath")
 			
 			def skjemaKortNavn
 			def skjemaVersjon
@@ -537,7 +537,7 @@ class IntervjuObjektController {
 	}
 	
 	def searchResultLastNed = {
-		def filPath = grailsApplication.config.utvalg.eksport.fil.path
+		def filPath = grailsApplication.config.getProperty("utvalg.eksport.fil.path")
 		def filNavn = "IntobjSok" + "_" + System.currentTimeMillis() + ".csv"
 		def filPathOgNavn = filPath + filNavn
 		

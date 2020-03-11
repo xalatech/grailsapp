@@ -11,6 +11,8 @@
 //= require paper-dashboard/plugins/perfect-scrollbar.jquery.min.js
 //= require paper-dashboard/plugins/bootstrap-notify.js
 //= require paper-dashboard/paper-dashboard.min.js
+//= require datepicker/js/bootstrap-datepicker.min.js
+//= require datepicker/locales/bootstrap-datepicker.no.min.js
 //= require_self
 
 if (typeof jQuery !== 'undefined') {
@@ -22,3 +24,5 @@ if (typeof jQuery !== 'undefined') {
         });
     })(jQuery);
 }
+
+

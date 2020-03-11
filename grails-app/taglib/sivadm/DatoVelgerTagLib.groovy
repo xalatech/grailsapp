@@ -17,8 +17,12 @@ class DatoVelgerTagLib {
 			onChange = attrs['onchange']
 		}
 				
-		def script = "<script type=\"text/javascript\"> jQuery(function() {jQuery( '[id|=\"${id}\"]' ).datepicker({firstDay: 1}); }); </script>"
-		def html = "<input type=\"text\" id=\"${id}\" name=\"${name}\" value=\"${date}\" size=\"10\" "
+		def script = "<script type=\"text/javascript\"> jQuery(function() {jQuery( '[id|=\"${id}\"]' ).datepicker({format: \"dd.mm.yyyy\",\n" +
+				"    todayBtn: \"linked\",\n" +
+				"    language: \"no\",\n" +
+				"    autoclose: true,\n" +
+				"    todayHighlight: true}); }); </script>"
+		def html = "<input type=\"text\" class=\"form-control\" id=\"${id}\" name=\"${name}\" value=\"${date}\" size=\"10\" "
 		if(onChange) {
 			html = html + "onChange=\"" + onChange + "\" "
 		}

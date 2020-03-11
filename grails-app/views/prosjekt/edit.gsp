@@ -2,199 +2,178 @@
 <%@ page import="sivadm.Prosjekt" %>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <g:set var="pageTitle" value="Endre Prosjekt" scope="request"/>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'prosjekt.label', default: 'Prosjekt')}" />
-        <title><g:message code="default.edit.label" args="[entityName]" /></title>
+        <title>${pageTitle}</title>
     </head>
     <body>
-    
-        <div class="body">
-        	
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+    <g:form method="post" class="form form-horizontal" >
+    <div class="card" style="width: 100%;">
+        <div class="card-body">
             <g:if test="${flash.message}">
-            	<div class="message">${flash.message}</div>
+                <div class="message">${flash.message}</div>
             </g:if>
             <g:hasErrors bean="${prosjektInstance}">
-            <div class="errors">
-                <g:renderErrors bean="${prosjektInstance}" as="list" />
-            </div>
+                <div class="errors">
+                    <g:renderErrors bean="${prosjektInstance}" as="list" />
+                </div>
             </g:hasErrors>
-            <g:form method="post" >
+
                 <g:hiddenField name="id" value="${prosjektInstance?.id}" />
                 <g:hiddenField name="version" value="${prosjektInstance?.version}" />
-                <div class="dialog">
-                    <table>
-                        <tbody>
-                        
-                        	<tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="prosjektNavn"><g:message code="prosjekt.prosjektNavn.label" default="Prosjekt Navn" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'prosjektNavn', 'errors')}">
-                                    <g:textField name="prosjektNavn" value="${prosjektInstance?.prosjektNavn}" size="40" />
-                                </td>
-                            </tr>
-                            
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="produktNummer"><g:message code="prosjekt.produktNummer.label" default="Produktnummer" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'produktNummer', 'errors')}">
-                                    <g:textField name="produktNummer" value="${prosjektInstance?.produktNummer}" size="5" maxlength="5" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="aargang"><g:message code="prosjekt.aargang.label" default="Årgang" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'aargang', 'errors')}">
-                                    <g:textField name="aargang" value="${fieldValue(bean: prosjektInstance, field: 'aargang')}" size="4" maxlength="4" />
-                                </td>
-                            </tr>
-                            
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="oppstartDato"><g:message code="prosjekt.oppstartDato.label" default="Oppstartdato" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'oppstartDato', 'errors')}">
-                                    <g:datoVelger id="od" name="oppstartDato" value="${prosjektInstance?.oppstartDato}"/>
-                                    
-                                </td>
-                            </tr>
-                            
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="avslutningsDato"><g:message code="prosjekt.avslutningsDato.label" default="Avslutningsdato" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'avslutningsDato', 'errors')}">
-                                    <g:datoVelger id="ad" name="avslutningsDato" value="${prosjektInstance?.avslutningsDato}"/>
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="registerNummer"><g:message code="prosjekt.registerNummer.label" default="Registernummer" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'registerNummer', 'errors')}">
-                                    <g:textField name="registerNummer" value="${prosjektInstance?.registerNummer}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="panel"><g:message code="prosjekt.panel.label" default="Panel" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'panel', 'errors')}">
-                                    <g:checkBox name="panel" value="${prosjektInstance?.panel}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="modus"><g:message code="prosjekt.modus.label" default="Modus" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'modus', 'errors')}">
-                                    <g:select name="modus" from="${siv.type.ProsjektModus?.values()}" optionKey="key" optionValue="guiName" value="${prosjektInstance?.modus?.key}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-								<td valign="top" class="name"><label for="skjemaer"><g:message
-									code="prosjekt.skjemaer.label" default="Skjemaer" /></label></td>
-								<td valign="top"
-									class="value ${hasErrors(bean: prosjektInstance, field: 'skjemaer', 'errors')}">
-				
-								<ul>
-									<g:each in="${prosjektInstance?.skjemaer?.sort{it.delProduktNummer}}" var="s">
-										<li><g:link controller="skjema" action="edit" id="${s.id}" params="['prosjekt.id': prosjektInstance?.id]">
-											${s?.encodeAsHTML()}
-										</g:link></li>
-									</g:each>
-								</ul>
-								<g:link controller="skjema" action="create"
-									params="['prosjekt.id': prosjektInstance?.id]">
-									${message(code: 'default.add.label', args: [message(code: 'skjema.label', default: 'Skjema')])}
-								</g:link></td>
-							</tr>
-				
-							<tr class="prop">
-								<td valign="top" class="name">
-								 <label for="prosjektDeltagere"><g:message code="prosjekt.prosjektDeltagere.label" default="Prosjektdeltagere" /></label>
-								</td>
-								<td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'prosjektDeltagere', 'errors')}">
-									<ul>
-										<g:each in="${prosjektInstance?.prosjektDeltagere?}" var="p">
-											<li><g:link controller="prosjektDeltager" action="edit" id="${p.id}" params="${['prosjekt.id': prosjektInstance?.id]}">${p?.encodeAsHTML()}</g:link></li>
-										</g:each>
-									</ul>
-									<g:link controller="prosjektDeltager" action="create" params="['prosjekt.id': prosjektInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'prosjektDeltager.label', default: 'Prosjektdeltager')])}</g:link>
-								</td>
-							</tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="finansiering"><g:message code="prosjekt.finansiering.label" default="Finansiering" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'finansiering', 'errors')}">
-                                    <g:select name="finansiering" from="${siv.type.ProsjektFinansiering?.values()}" optionKey="key" optionValue="guiName" value="${prosjektInstance?.finansiering?.key}"  />
-                                </td>
-                            </tr>
-                            
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="prosentStat"><g:message code="prosjekt.prosentStat.label" default="Stat %" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'prostentStat', 'errors')}">
-                                    <g:textField name="prosentStat" value="${prosjektInstance?.prosentStat}" size="3" maxlength="3" />
-                                </td>
-                            </tr>
-                            
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="prosentMarked"><g:message code="prosjekt.prosentMarked.label" default="Marked %" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'prostentMarked', 'errors')}">
-                                    <g:textField name="prosentMarked" value="${prosjektInstance?.prosentMarked}" size="3" maxlength="3" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="prosjektLeder"><g:message code="prosjekt.prosjektLeder.label" default="Prosjektleder" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'prosjektLeder', 'errors')}">
-                                    <g:select name="prosjektLeder.id" from="${sivadm.ProsjektLeder.list()}" optionKey="id" value="${prosjektInstance?.prosjektLeder?.id}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="prosjektStatus"><g:message code="prosjekt.prosjektStatus.label" default="Prosjektstatus" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'prosjektStatus', 'errors')}">
-                                    <g:select name="prosjektStatus" from="${siv.type.ProsjektStatus?.values()}" optionKey="key" optionValue="guiName" value="${prosjektInstance?.prosjektStatus?.key}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="kommentar"><g:message code="prosjekt.kommentar.label" default="Kommentar" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: prosjektInstance, field: 'kommentar', 'errors')}">
-                                    <g:textField name="kommentar" value="${prosjektInstance?.kommentar}" size="40" />
-                                </td>
-                            </tr>
-                        
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="control-label" for="prosjektNavn"><g:message code="prosjekt.prosjektNavn.label" default="Prosjekt Navn" /></label>
+                        <g:textField name="prosjektNavn" class="form-control" value="${prosjektInstance?.prosjektNavn}" size="40" />
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="control-label" for="prosjektNavn"><g:message code="prosjekt.produktNummer.label" default="Produktnummer" /></label>
+                        <g:textField name="produktNummer" class="form-control" value="${prosjektInstance?.produktNummer}" size="5" maxlength="5" />
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="control-label" for="aargang"><g:message code="prosjekt.aargang.label" default="Årgang" /></label>
+                        <g:textField name="aargang" class="form-control" value="${prosjektInstance?.aargang}" size="4" maxlength="4" />
+                    </div>
                 </div>
-                <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
-                    <span class="menuButton"><g:link class="delete" action="list"><g:message code="sil.avbryt" /></g:link></span>
+                <div class="row mt-3">
+                <div class="col-sm-6">
+                    <label class="control-label" for="registerNummer"><g:message code="prosjekt.registerNummer.label" default="Registernummer" /></label>
+                    <g:textField name="registerNummer" class="form-control" value="${prosjektInstance?.registerNummer}" />
                 </div>
-            </g:form>
+                <div class="col-sm-3">
+                    <label class="control-label" for="oppstartDato"><g:message code="prosjekt.oppstartDato.label" default="Oppstartdato" /></label>
+                    <g:datoVelger id="od" name="oppstartDato" value="${prosjektInstance?.oppstartDato}" size="5" maxlength="5" />
+                </div>
+                <div class="col-sm-3">
+                    <label class="control-label" for="avslutningsDato"><g:message code="prosjekt.avslutningsDato.label" default="Avslutningsdato" /></label>
+                    <g:datoVelger id="ad" name="avslutningsDato" class="form-control" value="${prosjektInstance?.avslutningsDato}" />
+                </div>
+            </div>
+                <hr class="mb-3 mt-3" />
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <label class="control-label" for="prosjektLeder.id"><g:message code="prosjekt.prosjektLeder.label" default="ProsjektLeder" /></label>
+                        <g:select name="prosjektLeder.id" class="form-control" from="${sivadm.ProsjektLeder.list()}" optionKey="id" value="${prosjektInstance?.prosjektLeder?.id}"  />
+                    </div>
+                    <div class="col-sm-1">
+                        <label class="control-label" for="panel"><g:message code="prosjekt.panel.label" default="Panel" /></label>
+                        <g:checkBox name="panel" class="form-control-checkbox" value="${prosjektInstance?.panel}" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label" for="modus"><g:message code="prosjekt.modus.label" default="Modus" /></label>
+                        <g:select name="modus" class="form-control" from="${siv.type.ProsjektModus?.values()}" optionKey="key" optionValue="guiName" value="${prosjektInstance?.modus?.key}" />
+
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="control-label" for="prosjektStatus"><g:message code="prosjekt.prosjektStatus.label" default="Prosjektstatus" /></label>
+                        <g:select name="prosjektStatus" class="form-control" from="${siv.type.ProsjektStatus?.values()}" optionKey="key" optionValue="guiName" value="${prosjektInstance?.prosjektStatus?.key}"  />
+
+                    </div>
+
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <label class="control-label" for="kommentar"><g:message code="prosjekt.kommentar.label" default="Prosjekt kommentar" /></label>
+                        <g:textField name="kommentar" class="form-control" value="${prosjektInstance?.kommentar}" size="40" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label" for="prosentStat"><g:message code="prosjekt.prosentStat.label" default="Stat %" /></label>
+                        <g:textField name="prosentStat" class="form-control" value="${prosjektInstance?.prosentStat}" size="3" maxlength="3" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label" for="prosentMarked"><g:message code="prosjekt.prosentMarked.label" default="Marked %" /></label>
+                        <g:textField name="prosentMarked" class="form-control" value="${prosjektInstance?.prosentMarked}" size="3" maxlength="3" />
+
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label" for="finansiering"><g:message code="prosjekt.finansiering.label" default="Finansiering" /></label>
+                        <g:select name="finansiering" class="form-control" from="${siv.type.ProsjektFinansiering?.values()}" optionKey="key" optionValue="guiName" value="${prosjektInstance?.finansiering?.key}"  />
+                    </div>
+
+                </div>
+                <hr class="mb-3 mt-3" />
+                <div class="row">
+                    <div class="col">
+                        <h5><g:message code="prosjekt.skjemaer.label" default="Skjemaer" /></h5>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Skjemanavn</th>
+                                <th scope="col">Arbeidsordrenummer</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <g:each in="${prosjektInstance?.skjemaer?.sort{it.delProduktNummer}}" var="s">
+                                <tr>
+                                    <td><g:link controller="skjema" action="edit" id="${s.id}" params="['prosjekt.id': prosjektInstance?.id]">
+                                        ${s?.id}
+                                    </g:link></td>
+                                    <td><g:link controller="skjema" action="edit" id="${s.id}" params="['prosjekt.id': prosjektInstance?.id]">
+                                        ${s?.skjemaKortNavn}
+                                    </g:link></td>
+                                    <td><g:link controller="skjema" action="edit" id="${s.id}" params="['prosjekt.id': prosjektInstance?.id]">
+                                        ${s?.delProduktNummer}
+                                    </g:link></td>
+                                </tr>
+
+
+                            </g:each>
+
+
+                            </tbody>
+                        </table>
+                        <g:link class="btn btn-sm btn-outline-light" controller="skjema" action="create"
+                                params="['prosjekt.id': prosjektInstance?.id]">
+                            ${message(code: 'default.add.label', args: [message(code: 'skjema.label', default: 'Skjema')])}
+                        </g:link>
+
+                    </div>
+                    <div class="col">
+                        <h5><g:message code="prosjekt.prosjektDeltagere.label" default="Prosjektdeltagere" /></h5>
+
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Navn</th>
+                                <th scope="col">Initial</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <g:each in="${prosjektInstance?.prosjektDeltagere?}" var="p">
+                                <tr>
+                                    <td><g:link controller="prosjektDeltager" action="edit" id="${p.id}" params="${['prosjekt.id': prosjektInstance?.id]}">${p?.id}</g:link></td>
+                                    <td><g:link controller="prosjektDeltager" action="edit" id="${p.id}" params="${['prosjekt.id': prosjektInstance?.id]}">${p?.deltagerNavn}</g:link></td>
+                                    <td><g:link controller="prosjektDeltager" action="edit" id="${p.id}" params="${['prosjekt.id': prosjektInstance?.id]}">${p?.deltagerInitialer}</g:link></td>
+                                </tr>
+
+                            </g:each>
+
+
+                            </tbody>
+                        </table>
+                        <g:link controller="prosjektDeltager" class="btn btn-sm btn-outline-light" action="create" params="['prosjekt.id': prosjektInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'prosjektDeltager.label', default: 'Prosjektdeltager')])}</g:link>
+
+                    </div>
+                </div>
+
         </div>
+
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <g:actionSubmit class="save btn btn-primary" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:link class="delete btn btn-danger ml-2" action="list"><g:message code="sil.avbryt" /></g:link>
+
+                </div>
+            </div>
+                   </div>
+    </div>
+            </g:form>
+
+
     </body>
 </html>

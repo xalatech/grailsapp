@@ -176,20 +176,20 @@ class SapFilService {
 		fil.setAntallLinjer antLinjer
 
 		// SAP filene skal lagres lokalt
-		if(grailsApplication.config.sil.sap.fil.lagre.lokalt) {
+		if(grailsApplication.config.getProperty("sil.sap.fil.lagre.lokalt")) {
 			OutputStreamWriter output = null
 			try {
-				if(!grailsApplication.config.sil.sap.fil.lokal.katalog.endsWith("\\") && !grailsApplication.config.sil.sap.fil.lokal.katalog.endsWith("/")) {
-					if(grailsApplication.config.sil.sap.fil.lokal.katalog.startsWith("/")) {
+				if(!grailsApplication.config.getProperty("sil.sap.fil.lokal.katalog").endsWith("\\") && !grailsApplication.config.getProperty("sil.sap.fil.lokal.katalog").endsWith("/")) {
+					if(grailsApplication.config.getProperty("sil.sap.fil.lokal.katalog").startsWith("/")) {
 						fileName = "/" + fileName
 					}
 					else {
 						fileName = "\\" + fileName
 					}
 				}
-				OutputStream fout= new FileOutputStream((grailsApplication.config.sil.sap.fil.lokal.katalog + fileName));
+				OutputStream fout= new FileOutputStream((grailsApplication.config.getProperty("sil.sap.fil.lokal.katalog") + fileName));
 				OutputStream bout= new BufferedOutputStream(fout);
-				output = new OutputStreamWriter(bout, grailsApplication.config.sil.sap.fil.encoding);
+				output = new OutputStreamWriter(bout, grailsApplication.config.getProperty("sil.sap.fil.encoding"));
 				output.write(forsteLinje);
 				output.write(linjer.toString());
 				output.flush();  // Don't forget to flush!
@@ -216,25 +216,25 @@ class SapFilService {
 			def ftpClient = new FTPClient()
 
 			try {
-				ftpClient.connect(grailsApplication.config.sil.sap.fil.ftp.host, grailsApplication.config.sil.sap.fil.ftp.port)
-				boolean isLoggedIn = ftpClient.login(grailsApplication.config.sil.sap.fil.ftp.bruker, grailsApplication.config.sil.sap.fil.ftp.passord)
+				ftpClient.connect(grailsApplication.config.getProperty("sil.sap.fil.ftp.host"), grailsApplication.config.getProperty("sil.sap.fil.ftp.port"))
+				boolean isLoggedIn = ftpClient.login(grailsApplication.config.sil.sap.fil.ftp.bruker, grailsApplication.config.getProperty("sil.sap.fil.ftp.passord"))
 
 				if(isLoggedIn) {
-					if(grailsApplication.config.sil.sap.fil.ftp.katalog && !grailsApplication.config.sil.sap.fil.ftp.katalog.equals("")) {
-						ftpClient.changeWorkingDirectory(grailsApplication.config.sil.sap.fil.ftp.katalog)
+					if(grailsApplication.config.getProperty("sil.sap.fil.ftp.katalog") && !grailsApplication.config.getProperty("sil.sap.fil.ftp.katalog").equals("")) {
+						ftpClient.changeWorkingDirectory(grailsApplication.config.getProperty("sil.sap.fil.ftp.katalog"))
 					}
 
 					String str = forsteLinje + linjer.toString()
 					ByteArrayInputStream bais = new ByteArrayInputStream(str.getBytes())
 					boolean fileStored = ftpClient.storeFile(fileName, bais)
 					ftpClient.disconnect()
-					log.info("Har skrevet fil '" + fileName + "' til " + grailsApplication.config.sil.sap.fil.ftp.host)
+					log.info("Har skrevet fil '" + fileName + "' til " + grailsApplication.config.getProperty("sil.sap.fil.ftp.host"))
 				}
 				else {
 					// KUNNE IKKE LOGGE PÅ FTP
-					String str = "Kunne ikke logge på ftp " + grailsApplication.config.sil.sap.fil.ftp.host + 
-								 ":" + grailsApplication.config.sil.sap.fil.ftp.port + 
-								 ", med bruker " + grailsApplication.config.sil.sap.fil.ftp.bruker
+					String str = "Kunne ikke logge på ftp " + grailsApplication.config.getProperty("sil.sap.fil.ftp.host") +
+								 ":" + grailsApplication.config.getProperty("sil.sap.fil.ftp.port") +
+								 ", med bruker " + grailsApplication.config.getProperty("sil.sap.fil.ftp.bruker")
 					log.error(str)
 					fil.setStatus SapFilStatusType.FEILET
 					fil.setStatusmelding str
@@ -281,7 +281,7 @@ class SapFilService {
 	}
 
     def ryddSapFil() {
-        String antallAar = grailsApplication.config.behold.fravaer.antall.aar
+        String antallAar = grailsApplication.config.getProperty("behold.fravaer.antall.aar")
         log.info("Kjører ryddSapFil, sletter filer eldre enn " + (antallAar - 1) + " og et halvt år")
 
         Calendar cal = Calendar.getInstance()
@@ -485,9 +485,9 @@ class SapFilService {
 		}
 
 		// Kostnadssted 10
-		s += fyllMedBlanke(grailsApplication.config.sil.sap.kostnadssted, 10, true)
+		s += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kostnadssted"), 10, true)
 		if(overtidStr) {
-			overtidStr += fyllMedBlanke(grailsApplication.config.sil.sap.kostnadssted, 10, true)
+			overtidStr += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kostnadssted"), 10, true)
 		}
 
 		// K-element-7 12
@@ -505,15 +505,15 @@ class SapFilService {
 
 		// K-element-4 10
 		if(finansiering == ProsjektFinansiering.STAT || finansiering == ProsjektFinansiering.STAT_MARKED) {
-			s += fyllMedBlanke(grailsApplication.config.sil.sap.kontopost.stat, 10, true)
+			s += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kontopost.stat"), 10, true)
 			if(overtidStr) {
-				overtidStr += fyllMedBlanke(grailsApplication.config.sil.sap.kontopost.stat, 10, true)
+				overtidStr += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kontopost.stat"), 10, true)
 			}
 		}
 		else if(finansiering == ProsjektFinansiering.MARKED) {
-			s += fyllMedBlanke(grailsApplication.config.sil.sap.kontopost.marked, 10, true)
+			s += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kontopost.marked"), 10, true)
 			if(overtidStr) {
-				overtidStr += fyllMedBlanke(grailsApplication.config.sil.sap.kontopost.marked, 10, true)
+				overtidStr += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kontopost.marked"), 10, true)
 			}
 		}
 
@@ -547,7 +547,7 @@ class SapFilService {
 			// Ta med alt mellom antall og kontopost (kostnadsted, blanke og produktnummer)
 			passasjerTilleggLinjeStat += s.substring(74, 120)
 			// Kontopost 10
-			passasjerTilleggLinjeStat += fyllMedBlanke(grailsApplication.config.sil.sap.kontopost.stat, 10, true)
+			passasjerTilleggLinjeStat += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kontopost.stat"), 10, true)
 			// Stiplet 16
 			passasjerTilleggLinjeStat += fyllMedBlanke("-", 16, true)
 			// Kontoart 24
@@ -566,7 +566,7 @@ class SapFilService {
 				// Ta med alt mellom antall og kontopost (kostnadsted, blanke og produktnummer)
 				passasjerTilleggLinjeMarked += s.substring(74, 120)
 				// Kontopost 10
-				passasjerTilleggLinjeMarked += fyllMedBlanke(grailsApplication.config.sil.sap.kontopost.marked, 10, true)
+				passasjerTilleggLinjeMarked += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kontopost.marked"), 10, true)
 				// Stiplet 16
 				passasjerTilleggLinjeMarked += fyllMedBlanke("-", 16, true)
 				// Kontoart 24
@@ -596,7 +596,7 @@ class SapFilService {
 				// Ta med alt mellom antall og kontopost (kostnadsted, blanke og produktnummer)
 				retStr += s.substring(75, 121)
 				// Kontopost 10
-				retStr += fyllMedBlanke(grailsApplication.config.sil.sap.kontopost.marked, 10, true)
+				retStr += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kontopost.marked"), 10, true)
 				// Stiplet 16
 				retStr += fyllMedBlanke("-", 16, true)
 				// Kontoart 24
@@ -609,7 +609,7 @@ class SapFilService {
 					retStr += fyllMedNuller(intArray[1].toString(), 7, true)
 					retStr += overtidStr.substring(75, 121)
 					// Kontopost 10 (marked)
-					retStr += fyllMedBlanke(grailsApplication.config.sil.sap.kontopost.marked, 10, true)
+					retStr += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kontopost.marked"), 10, true)
 					retStr += overtidStr.substring(131)
 				}
 			}
@@ -633,7 +633,7 @@ class SapFilService {
 				// Ta med alt mellom antall og kontopost (kostnadsted, blanke og produktnummer)
 				retStr += s.substring(74, 120)
 				// Kontopost 10
-				retStr += fyllMedBlanke(grailsApplication.config.sil.sap.kontopost.marked, 10, true)
+				retStr += fyllMedBlanke(grailsApplication.config.getProperty("sil.sap.kontopost.marked"), 10, true)
 				// Stiplet 16
 				retStr += fyllMedBlanke("-", 16, true)
 				// Kontoart 24
@@ -704,7 +704,7 @@ class SapFilService {
 		def prosent = 100
 		if (isStatMarked) {
 			def kontopost = kravlinje.substring(125, 131)
-			if (kontopost == grailsApplication.config.sil.sap.kontopost.stat)
+			if (kontopost == grailsApplication.config.getProperty("sil.sap.kontopost.stat"))
 				prosent = statProsent
 			else
 				prosent = 100 - statProsent
@@ -806,30 +806,30 @@ class SapFilService {
 	}
 
 	String genererFilnavnSapFil(FilType filType) {
-		String navn = grailsApplication.config.sil.sap.firmakode
+		String navn = grailsApplication.config.getProperty("sil.sap.firmakode")
 
 		if(filType == FilType.TIME) {
-			navn = navn + grailsApplication.config.sil.sap.kode.time
+			navn = navn + grailsApplication.config.getProperty("sil.sap.kode.time")
 		}
 		else {
-			navn = navn + grailsApplication.config.sil.sap.kode.reise
+			navn = navn + grailsApplication.config.getProperty("sil.sap.kode.reise")
 		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd")
 
-		navn = navn + sdf.format(new Date()) + finnLopenummerFil(new Date(), filType) + grailsApplication.config.sil.sap.fil.extension
+		navn = navn + sdf.format(new Date()) + finnLopenummerFil(new Date(), filType) + grailsApplication.config.getProperty("sil.sap.fil.extension")
 
 		return navn
 	}
 
 	String genererForsteLinjeSapFil(Integer antall, FilType filType) {
-		String forsteLinje = grailsApplication.config.sil.sap.firmakode + "      "
+		String forsteLinje = grailsApplication.config.getProperty("sil.sap.firmakode") + "      "
 
 		if(filType == FilType.TIME) {
-			forsteLinje = forsteLinje + grailsApplication.config.sil.sap.kode.time + " "
+			forsteLinje = forsteLinje + grailsApplication.config.getProperty("sil.sap.kode.time") + " "
 		}
 		else {
-			forsteLinje = forsteLinje + grailsApplication.config.sil.sap.kode.reise + " "
+			forsteLinje = forsteLinje + grailsApplication.config.getProperty("sil.sap.kode.reise") + " "
 		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd")
@@ -960,10 +960,10 @@ class SapFilService {
 		}
 
 		if(!liste) {
-			return grailsApplication.config.sil.sap.forste.lopenummer
+			return grailsApplication.config.getProperty("sil.sap.forste.lopenummer")
 		}
 		else {
-			int lNr = Integer.parseInt(grailsApplication.config.sil.sap.forste.lopenummer) + liste.size()
+			int lNr = Integer.parseInt(grailsApplication.config.getProperty("sil.sap.forste.lopenummer")) + liste.size()
 			return lNr.toString()
 		}
 	}

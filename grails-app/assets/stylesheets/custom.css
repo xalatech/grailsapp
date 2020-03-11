@@ -1,3 +1,18 @@
+body {
+    background-color: #f4f3ef;
+}
+
+.row {
+    position: relative;
+    max-width: 1400px;
+    margin: 0px;
+    padding: 0 5%;
+}
+
+.perfect-scrollbar-on .sidebar, .perfect-scrollbar-on .main-panel {
+    min-height: 100%;
+}
+
 .sidelist-header-name {
     font-width: 700;
     display: flex;
@@ -12,7 +27,7 @@
     text-transform: uppercase !important;
     color: rgba(0, 0, 0, 0.90) !important;
     padding: 0.5rem 1rem;
-    margin: 5px;
+    margin: 0px;
     background: #5a6268;
 }
 
@@ -61,6 +76,7 @@
     -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     -ms-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    min-height: 100%;
 }
 
 .sidebar-wrapper::-webkit-scrollbar {
@@ -83,7 +99,7 @@
 }
 
 .sidebar .sidebar-wrapper li.active>a:not([data-toggle="collapse"]):after, .sidebar .sidebar-wrapper li.active>[data-toggle="collapse"]+div .nav li:after {
-    border-right: 17px solid #f4f3ef;
+    border-right: 17px solid floralwhite;
     border-top: 17px solid transparent;
     border-bottom: 17px solid transparent;
     content: "";
@@ -91,7 +107,7 @@
     position: absolute;
     right: -17px;
     opacity: 1;
-    top: -8px;
+    top: -4px;
     transition: opacity 150ms ease-in;
 }
 
@@ -104,6 +120,72 @@
     position: absolute;
     right: -16px;
     opacity: 1;
-    top: -8px;
+    top: -4px;
     transition: opacity 150ms ease-in;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.table>thead>tr>th {
+    border: 1px solid #dee2e6;
+    text-transform: initial;
+    padding-left: 15px;
+}
+
+.table tbody tr td {
+    vertical-align: middle;
+    font-size: 14px;
+    padding: 5px 5px 5px 15px;
+}
+
+.card .card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.card .card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+.card .card-header:not([data-background-color]) {
+    background-color: floralwhite;
+}
+
+.card label {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.card-footer {
+    padding: 1.25rem 1.25rem;
+    background-color: floralwhite!important;
+}
+
+.form-control-checkbox {
+    display: block;
+    width: 100%;
+    height: calc(1.25rem + 2px);
+    margin-top: 8px;
+}
+
+.navbar.navbar-transparent {
+    background-color: floralwhite!important;
+}
+
+.sidebar .active {
+    background: #34b5b8;
+}
+
+.btn-sm {
+    font-size: 0.8571em;
+    border-radius: 3px;
+    padding: 5px 15px;
+}
+
+.btn, .navbar .navbar-nav>a.btn {
+    text-transform: initial;
 }

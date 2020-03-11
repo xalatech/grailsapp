@@ -105,9 +105,11 @@
 		$('.nav li a').each(function(){
 			var $this = $(this);
 			$this.parent().removeClass('active');
+			var href = $this.attr('href');
+			var href_group = href.split("/")[2];
 
-			if($this.attr('href').includes(res[1]) !== false) {
-				if(res[1] !== '') {
+			if(href_group === res[2]) {
+				if(res[2] !== '') {
 					$this.parent().addClass('active');
 				}
 				else {

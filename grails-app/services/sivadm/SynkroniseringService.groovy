@@ -22,8 +22,8 @@ class SynkroniseringService {
 	
 	def sjekkMeldingUt() {
 
-		def syncActivated = grailsApplication.config.sync.active
-		def blaiseUrl = grailsApplication.config.sync.blaise.url
+		def syncActivated = grailsApplication.config.getProperty("sync.active")
+		def blaiseUrl = grailsApplication.config.getProperty("sync.blaise.url")
 		
 		if(syncActivated == false) {
 			return
@@ -366,7 +366,7 @@ class SynkroniseringService {
 	
 	def ryddMeldingUt() {
 		
-		def antallDager = grailsApplication.config.behold.meldinger.ut.antall.dager
+		def antallDager = grailsApplication.config.getProperty("behold.meldinger.ut.antall.dager")
 		log.info("Kjører ryddMeldingUt, sletter meldinger eldre enn " + antallDager + " dager")
 		
 		Calendar cal = Calendar.getInstance()

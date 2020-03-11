@@ -871,7 +871,7 @@ class TimeforingService {
 	}
 
 	def ryddTimeforinger = {
-		String antallAar = grailsApplication.config.behold.timeforinger.antall.aar
+		String antallAar = grailsApplication.config.getProperty("behold.timeforinger.antall.aar")
 		log.info("Kjører ryddTimeforinger, sletter timeforinger eldre enn " + antallAar + " år")
 
 		Calendar cal = Calendar.getInstance()

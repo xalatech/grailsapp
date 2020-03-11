@@ -57,7 +57,7 @@ class BlaiseHentEventsService {
     }
 
     def getRestResponseWithId(RestTemplate restTemplate, BlaiseEventId lastBlaiseEventId) {
-        def host = grailsApplication.config.blaise.connector.url
+        def host = grailsApplication.config.getProperty("blaise.connector.url")
         def url = host + "/cawi_events/" + lastBlaiseEventId.blaiseId
 
         try {

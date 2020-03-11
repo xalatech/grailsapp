@@ -9,6 +9,7 @@ import siv.type.*
 
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import grails.core.GrailsApplication
 
 @Transactional
 class BootStrap {
@@ -24,10 +25,11 @@ class BootStrap {
     def intervjuereFemService
     def format = new SimpleDateFormat("yyyy-MM-dd")
 
+    GrailsApplication grailsApplication
+
     DateFormat dateFormat
 
     def init = { servletContext ->
-
         opprettProsessLogg()
 
         if (Environment.getCurrent() == Environment.DEVELOPMENT) {
@@ -110,6 +112,14 @@ class BootStrap {
     }
 
     @Transactional
+    def opprettSI4() {
+        Bruker si4 = Bruker.findByUsername("si4")
+        if(!si4) {
+            Bruker bruker = new Bruker(navn: "Adm", username: 'si4', password: springSecurityService.encodePassword('S1vtest00'), enabled: true ).save(failOnError: true, flush: true)
+            new BrukerRolle(bruker: bruker, rolle: rolleAdmin).save(failOnError: true, flush: true)
+        }
+    }
+    @Transactional
     def opprettProsessLogg() {
 
         ProsessNavn.values().each {
@@ -141,6 +151,7 @@ class BootStrap {
         Rolle rolleAdmin = Rolle.findByAuthority("ROLE_ADMIN")
 
         Bruker si4 = Bruker.findByUsername("si4")
+        print si4
         if(!si4) {
             Bruker bruker = new Bruker(navn: "Adm", username: 'si4', password: springSecurityService.encodePassword('S1vtest00'), enabled: true ).save(failOnError: true, flush: true)
             new BrukerRolle(bruker: bruker, rolle: rolleAdmin).save(failOnError: true, flush: true)

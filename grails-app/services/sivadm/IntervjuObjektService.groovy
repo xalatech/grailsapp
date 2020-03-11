@@ -560,7 +560,7 @@ class IntervjuObjektService {
 			if (search.intStatDatoIntervallFra && search.intStatDatoIntervallTil) {
 				if (search.intStatDatoIntervallFra.time <= search.intStatDatoIntervallTil.time) {
 
-					SimpleDateFormat sdf = new SimpleDateFormat(grailsApplication.config.database.datomaske)
+					SimpleDateFormat sdf = new SimpleDateFormat(grailsApplication.config.getProperty("database.datomaske"))
 					Calendar cal = Calendar.getInstance()
 
 					cal.setTime(search.intStatDatoIntervallFra)
@@ -804,7 +804,7 @@ class IntervjuObjektService {
 	 */
 	public void sjekkLaastTidspunktIo() {
 		Calendar cal = Calendar.getInstance()
-		cal.add(Calendar.MINUTE, (grailsApplication.config.io.laas.minutter * -1))
+		cal.add(Calendar.MINUTE, (grailsApplication.config.getProperty("io.laas.minutter") * -1))
 
 		def laasOppIoListe = IntervjuObjekt.createCriteria().list() {
 			isNotNull("laastTidspunkt")

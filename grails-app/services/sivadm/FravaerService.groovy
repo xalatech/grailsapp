@@ -7,10 +7,10 @@ class FravaerService {
     static transactional = false
 
     def ryddFravaer() {
-        log.info("Kjører ryddFravaer, sletter fravær med sluttdato eldre enn " + grailsApplication.config.behold.fravaer.antall.aar + " år")
+        log.info("Kjører ryddFravaer, sletter fravær med sluttdato eldre enn " + grailsApplication.config.getProperty("behold.fravaer.antall.aar") + " år")
 
         Calendar cal = Calendar.getInstance()
-        cal.add(Calendar.YEAR, (-1 * grailsApplication.config.behold.fravaer.antall.aar))
+        cal.add(Calendar.YEAR, (-1 * grailsApplication.config.getProperty("behold.fravaer.antall.aar")))
 
         slettFravaerMedSluttdatoEldreEnnDato(cal.getTime())
     }

@@ -162,7 +162,7 @@ class BlaiseOppdateringService {
     }
 
     def doRestPost (def endpoint, def request) {
-        def host = grailsApplication.config.blaise.connector.url
+        def host = grailsApplication.config.getProperty("blaise.connector.url")
         def url = host + endpoint
 
         def headers = new HttpHeaders()
@@ -181,7 +181,7 @@ class BlaiseOppdateringService {
     }
 
      String doRestGet (def endpoint) {
-        def host = grailsApplication.config.blaise.connector.url
+        def host = grailsApplication.config.getProperty("blaise.connector.url")
         String url = host + endpoint
 
          def restTemplate = new RestTemplate()

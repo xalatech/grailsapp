@@ -58,7 +58,7 @@ class UtvalgAdministrasjonController {
 		// Linja under må da være totalt unødvendig?
 		// String utvalgText = utvalgImportService.getUtvalgAsString(utvalgImport)
 		
-		def filPath = grailsApplication.config.utvalg.eksport.fil.path
+		def filPath = grailsApplication.config.getProperty("utvalg.eksport.fil.path")
 
 		def filNavn = utvalgImport.skjema.skjemaKortNavn + "_" + System.currentTimeMillis()
 		

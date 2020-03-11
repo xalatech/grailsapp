@@ -373,7 +373,7 @@ class KravController {
 			
 			if(kravInstance.intervjuer.epostJobb || kravInstance.intervjuer.epostPrivat) {
 				String mottaker = kravInstance.intervjuer.epostJobb ?: kravInstance.intervjuer.epostPrivat
-				String avsender = grailsApplication.config.avsender.sivadmin.epost
+				String avsender = grailsApplication.config.getProperty("avsender.sivadmin.epost")
 
 				String emne = ""
 				String bodyStr = (params.tittel ?  (params.tittel + "\n\n") : "") + (params.melding ? params.melding : "")
@@ -602,7 +602,7 @@ class KravController {
 		if(krav) {
 			if(kravService.hentTilbakeKravFraRettingIntervjuer(krav.intervjuer, krav.dato)) {
 				String mottaker = krav.intervjuer.epostJobb ?: krav.intervjuer.epostPrivat
-				String avsender = grailsApplication.config.avsender.sivadmin.epost
+				String avsender = grailsApplication.config.getProperty("avsender.sivadmin.epost")
 
 				def tittel = "${message(code: 'sil.behandle.krav.tilbakestill.epost.default.tittel')}"
 				def melding = "${message(code: 'sil.behandle.krav.tilbakestill.epost.default.melding', args: [sdf.format(krav.dato)])}"
@@ -775,7 +775,7 @@ class KravController {
 			if(slettet) {
 				// Send epost til intervjueren om at krav er blitt slettet
 				String mottaker = kravKjorebok?.intervjuer?.epostJobb ?: kravKjorebok.intervjuer.epostPrivat
-				String avsender = grailsApplication.config.avsender.sivadmin.epost
+				String avsender = grailsApplication.config.getProperty("avsender.sivadmin.epost")
 
 				String emne = "${message(code: 'sil.epost.emne.krav.slettet', default: 'Krav for utlegg tilhørende kjørebok er slettet')}"
 				try {
@@ -878,7 +878,7 @@ class KravController {
 			
 			if(krav.intervjuer.epostJobb || krav.intervjuer.epostPrivat) {
 				String mottaker = krav.intervjuer.epostJobb ?: krav.intervjuer.epostPrivat
-				String avsender = grailsApplication.config.avsender.sivadmin.epost
+				String avsender = grailsApplication.config.getProperty("avsender.sivadmin.epost")
 				
 				String emne = "${message(code: 'sil.epost.emne.krav.avvist', args: [])}"
 					
@@ -1184,7 +1184,7 @@ class KravController {
 		else {
 			// Finn epost adressen til intervjueren
 			String mottaker = intervjuer.epostJobb ?: intervjuer.epostPrivat
-			String avsender = grailsApplication.config.avsender.sivadmin.epost
+			String avsender = grailsApplication.config.getProperty("avsender.sivadmin.epost")
 			String emne = "${message(code: 'sil.epost.emne.tilbake.til.intervjuer', args: [kravListe.size()], default: '')}"
 			String bodyStr = ""
 			

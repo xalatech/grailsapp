@@ -1,9 +1,7 @@
 package sivadm
 
-import java.util.Date;
-import siv.type.MeldingInnType;
-import util.HttpRequestUtil;
-import groovy.util.XmlSlurper;
+import siv.type.MeldingInnType
+import util.HttpRequestUtil
 
 class BlaiseEventInnService {
 
@@ -27,8 +25,8 @@ class BlaiseEventInnService {
 	 */
     def behandleMeldingerBlaiseEventInn() {
 		
-		def blaiseUrl = grailsApplication.config.sync.blaise.url
-		
+		def blaiseUrl = grailsApplication.config.getProperty("sync.blaise.url")
+
 		def blaiseEventInnList = BlaiseEventInn.findAllByBehandlet( false )
 
 		// GAA GJENNOM ALLE SOM BLE FUNNET I BLAISE INN
