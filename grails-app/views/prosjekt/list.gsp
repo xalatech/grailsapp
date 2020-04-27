@@ -11,19 +11,15 @@
 <div class="card">
 	<div class="card-header">
 		<h5 class="card-title">${pageTitle}</h5>
-
-		<g:if test="${flash.errorMessage}">
-			<div class="errors">${flash.errorMessage}</div>
-		</g:if>
 		<g:form method="post">
 			<div class="form-row">
-				<div class="col">
+				<div class="col-3">
 					<g:textField name="produktNummer" placeholder="Produktnummer" class="form-control" id="produktnummer" value="${produktNummer}" />
 				</div>
-				<div class="col">
+				<div class="col-4">
 					<g:textField  name="prosjektNavn"  placeholder="Navn" class="form-control" id="prosjektNavn" value="${prosjektNavn}" />
 				</div>
-				<div class="col">
+				<div class="col-2">
 					<g:select name="prosjektStatus"
 							  from="${prosjektStatusList}"
 							  optionKey="key"
@@ -33,17 +29,19 @@
 							  value="${prosjektStatusDefault?.key}"
 							  noSelection="['' : 'Alle']" />
 				</div>
-				<div class="col">
+				<div class="col-2">
 					<g:textField placeholder="Årsgang" class="form-control" name="prosjektAargang" value="${prosjektAargang}" size="4" maxlength="4" />
 				</div>
+
 			</div>
-			<div class="form-row">
-				<div class="col-xs-2">
-					<g:actionSubmit class="btn btn-primary" action="list" value="Søk"></g:actionSubmit>
+			<div class="form-row mt-2">
+				<div class="col-2">
+					<g:actionSubmit class="btn btn-primary" action="list" value="Søk prosjekter"></g:actionSubmit>
 				</div>
-				<div class="col-xs-2">
-					<g:link class="btn btn-secondary" action="create"><g:message code="sivadm.prosjekt.nytt" default="Nytt prosjekt" /></g:link>
+				<div class="col-3">
+					<g:link class="btn btn-secondary" action="create"><g:message code="sivadm.prosjekt.nytt" default="Opprett ny prosjekt" /></g:link>
 				</div>
+
 			</div>
 		</g:form>
 
@@ -84,7 +82,7 @@
 						<g:link action="edit" id="${prosjektInstance.id}">${fieldValue(bean: prosjektInstance, field: "produktNummer")}</g:link>
 					</td>
 
-					<td>
+					<td  width="20%">
 						<g:link action="edit" id="${prosjektInstance.id}">${fieldValue(bean: prosjektInstance, field: "prosjektNavn")}</g:link>
 
 					</td>
@@ -94,7 +92,7 @@
 					</td>
 
 					<td valign="top" style="text-align: left;" class="value">
-						<ul>
+						<ul class="list-unstyled">
 							<g:each in="${prosjektInstance.skjemaer?.sort{it.delProduktNummer}}" var="s">
 								<li><g:link controller="skjema" action="edit" id="${s.id}"  params="['fraProsjektListe': true]">
 									${s?.encodeAsHTML()}
@@ -113,10 +111,10 @@
 							(${fieldValue(bean: prosjektInstance, field: "prosentStat")}% <g:message code="sivadm.Stat" default="Stat" /> / ${fieldValue(bean: prosjektInstance, field: "prosentMarked")}% <g:message code="sivadm.Marked" default="Marked" />)
 						</g:if>
 					</td>
-					<td>
+					<td align="center" width="10%">
 						<g:link action="edit" id="${prosjektInstance.id}"><g:redigerIkon /></g:link>
-						&nbsp;&nbsp;
-						<a href="#" onclick="return apneSlettDialog(${prosjektInstance.id})"><g:slettIkon /></a>
+						<g:link action="edit" id="${prosjektInstance.id}"><g:redigerIkon /></g:link>
+						<button type="button" class="btn btn-sm btn-outline-neutral slettModal" data-toggle="modal" data-target="#slettModal" data-id="${prosjektInstance.id}"><g:slettIkon /></button>
 					</td>
 				</tr>
 			</g:each>
@@ -126,9 +124,18 @@
 			<g:paginate	total="${prosjektInstanceTotal}" /></div>
 		</div>
 
-	<g:slettDialog domeneKlasse="prosjekt" melding="Er du sikker på at du vil slette prosjekt? Dette kan ha negative følger hvis intervjuere har ført timer på dette prosjektet, og disse ennå ikke er sendt til SAP." />
-</div>
+	<g:slettDialog formId="0" domeneKlasse="prosjekt" melding="Er du sikker på at du vil slette prosjekt? Dette kan ha negative følger hvis intervjuere har ført timer på dette prosjektet, og disse ennå ikke er sendt til SAP." />
 </div>
 
+
+<g:if test="${flash.message}">
+	<div class="card mt-2 mb-2 userMessage">
+		<div class="card-body bg-success text-white">
+			${flash.message}
+		</div>
+	</div>
+
+</g:if>
+</div>
 </body>
 </html>

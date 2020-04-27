@@ -16,11 +16,11 @@ class RyddLonnsdataJob {
         cron name: "ryddLonnsdataTrigger", cronExpression: "0 5 3 ? * SAT"
 	}
 	
-	def concurrent = false
+	static concurrent = false
 	
-	def group = "SivGroup"
+	static group = "SivGroup"
 
-	def execute() {
+	void execute() {
 		long start = System.currentTimeMillis()
 		log.info "RyddLonnsdataJob starting..."
 

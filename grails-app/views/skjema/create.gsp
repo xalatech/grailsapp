@@ -1,4 +1,3 @@
-
 <%@ page import="sivadm.Skjema"%>
 <html>
 <head>
@@ -93,9 +92,9 @@
 						optionKey="id"
 						value="${skjemaInstance?.prosjekt?.id}"
 						onchange="${remoteFunction(
-	            			controller:'prosjekt', 
-	            			action:'ajaxGetProsjekt', 
-	            			params:'\'id=\' + escape(this.value)', 
+	            			controller:'prosjekt',
+	            			action:'ajaxGetProsjekt',
+	            			params:'\'id=\' + escape(this.value)',
 	            			onComplete:'prosjektEndret(e)')}" />
 				</td>
 				

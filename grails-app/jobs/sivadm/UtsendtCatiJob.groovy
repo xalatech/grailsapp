@@ -14,11 +14,11 @@ class UtsendtCatiJob {
 		cron name: "utsendtCatiTrigger", cronExpression: "0 0 5 * * ?"
 	}
 	
-	def concurrent = false
+	static concurrent = false
 	
-	def group = "SivGroup"
+	static group = "SivGroup"
 
-	def execute() {
+	void execute() {
 		long start = System.currentTimeMillis()
 		log.info "UtsendtCatiJob starting..."
 		

@@ -12,11 +12,11 @@ class RyddMeldingerInnJob {
 		cron name: "ryddMeldingInnTrigger", cronExpression: "0 0 2 * * ?"
 	}
 	
-	def concurrent = false
+	static concurrent = false
 	
-	def group = "SivGroup"
+	static group = "SivGroup"
 
-	def execute() {
+	void execute() {
 		long start = System.currentTimeMillis()
 		log.info "RyddMeldingerInnJob starting..."
 		

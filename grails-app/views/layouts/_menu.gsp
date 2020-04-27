@@ -7,7 +7,7 @@
 <div class="sidebar-wrapper">
        <ul class="nav">
 		   <li class="dashboard-nav active ">
-			   <a href="/">
+			   <a href="/sivadmin">
 				   Dashboard
 			   </a>
 		   </li>
@@ -105,16 +105,14 @@
 		$('.nav li a').each(function(){
 			var $this = $(this);
 			$this.parent().removeClass('active');
-			var href = $this.attr('href');
-			var href_group = href.split("/")[2];
 
-			if(href_group === res[2]) {
-				if(res[2] !== '') {
-					$this.parent().addClass('active');
-				}
-				else {
-					$(".dashboard-nav").addClass('active');
-				}
+			var href = $this.attr('href');
+			var href_group = href.split("/");
+
+			if(href_group[2] === undefined && res[2] === "") {
+				$(".dashboard-nav").addClass('active');
+			}else if(href_group[2] === res[2]) {
+				$this.parent().addClass('active');
 			}
 
 

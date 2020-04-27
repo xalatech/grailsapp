@@ -12,11 +12,11 @@ class RyddFravaerJob {
         cron name: "ryddFravaerTrigger", cronExpression: "0 0 4 * * ?"
 	}
 	
-	def concurrent = false
+	static concurrent = false
 	
-	def group = "SivGroup"
+	static group = "SivGroup"
 
-	def execute() {
+	void execute() {
 		long start = System.currentTimeMillis()
 		log.info "RyddFravaerJob starting..."
 		

@@ -1,23 +1,19 @@
 package sivadm
 
-import service.UtvalgService;
-import util.UtvalgUtil;
-import exception.DuplikatIntervjuObjektException;
-import parser.*;
-import sivadm.Skjema;
-import sivadm.UtvalgImport;
-import sivadm.UtvalgImportService;
+
+import sivadm.Skjema
+import sivadm.UtvalgImportService
 
 class UtvalgImportJob {
 
-	def concurrent = false
+	static concurrent = false
 
 	UtvalgImportService utvalgImportService
 
 	static triggers = {
 	}
 
-	def execute(context) {
+	void execute(context) {
 		def utvalgTekst = context.mergedJobDataMap.get('utvalgTekst')
 		def importertAv = context.mergedJobDataMap.get('importertAv')
 		def skjemaId = context.mergedJobDataMap.get('skjemaId')

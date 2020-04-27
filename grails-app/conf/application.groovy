@@ -47,6 +47,10 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+grails.databinding.dateFormats = [
+        'dd.MM.yyyy', 'yyyy-MM-dd HH:mm:ss.S', "yyyy-MM-dd'T'hh:mm:ss'Z'"
+]
+
 // Lagt inn av vak ifm. oppgradering fra grails 1.3.7
 // SIL-konfigurasjon
 sil.sap.fil.extension = ".txt"

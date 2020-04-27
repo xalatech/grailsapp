@@ -17,13 +17,13 @@ class BlaiseIntegrasjonJob {
 		// repeatInterval var satt til 5 minutter, dvs 300000 millisekunder
 	}
 
-	def concurrent = false
+	static concurrent = false
 
-	def group = "SivGroup"
+	static group = "SivGroup"
 	
 	def gjorIngentingOmNattenMelding = "... gjor ingenting mellom kl 00:00 og kl 07:00"
 	
-	def execute() {	
+	void execute() {
 		
 		// BLAISE TRIGGER SERVICE
 		long start = System.currentTimeMillis()

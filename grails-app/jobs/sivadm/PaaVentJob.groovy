@@ -13,11 +13,11 @@ class PaaVentJob {
 		cron name: "paaVentTrigger", cronExpression: "0 0 1 * * ?"
 	}
 	
-	def concurrent = false
+	static concurrent = false
 	
-	def group = "SivGroup"
+	static group = "SivGroup"
 
-	def execute() {
+	void execute() {
 		long start = System.currentTimeMillis()
 		log.info "PaaVentJob starting..."
 		

@@ -2,14 +2,14 @@ package sivadm
 
 class UtvalgEksportJob {
 
-	def concurrent = false
+	static concurrent = false
 
 	UtvalgImportService utvalgImportService
 
 	static triggers = {
 	}
 
-	def execute(context) {
+	void execute(context) {
 		def utvalgImportId = context.mergedJobDataMap.get('utvalgImportId')
 		def fil = context.mergedJobDataMap.get('fil')
 

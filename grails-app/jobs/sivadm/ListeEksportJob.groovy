@@ -14,7 +14,7 @@ package sivadm
 class ListeEksportJob {
 	// Lagd etter mønster av UtvalgEksportJob.groovy
 
-	def concurrent = false
+	static concurrent = false
 
 	UtvalgImportService utvalgImportService
 	IntervjuObjektService intervjuObjektService
@@ -22,7 +22,7 @@ class ListeEksportJob {
 	static triggers = {
 	}
 
-	def execute(context) {
+	void execute(context) {
 		def listeData = context.mergedJobDataMap.get('listeData')								// NY
 		def fil = context.mergedJobDataMap.get('fil')
 

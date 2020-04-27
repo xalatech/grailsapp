@@ -2,14 +2,14 @@ package sivadm
 
 class UtvalgSlettJob {
 
-	def concurrent = false
+	static concurrent = false
 	
 	UtvalgImportService utvalgImportService
 	
 	static triggers = {
 	}
 	
-	def execute(context) {
+	void execute(context) {
 		Long utvalgImportId = context.mergedJobDataMap.get('utvalgImportId')
 
 		long start = System.currentTimeMillis()

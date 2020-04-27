@@ -25,4 +25,15 @@ if (typeof jQuery !== 'undefined') {
     })(jQuery);
 }
 
+function remoteFunction(controller, action, params, onComplete) {
+    $.ajax({
+        type: "POST",
+        url: controller + "/" + action,
+        data: params,
+        success: onComplete,
+        dataType: 'json'
+    });
+};
+
+
 

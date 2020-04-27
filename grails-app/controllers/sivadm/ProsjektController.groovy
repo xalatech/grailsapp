@@ -5,6 +5,8 @@ import grails.converters.*
 import grails.plugin.springsecurity.annotation.Secured
 import grails.orm.*
 
+import java.text.SimpleDateFormat
+
 @Secured(['ROLE_ADMIN', 'ROLE_INTERVJUERKONTAKT', 'ROLE_PLANLEGGER'])
 class ProsjektController {
 
@@ -135,14 +137,14 @@ class ProsjektController {
     }
 
     def save = {
-        def prosjektInstance = new Prosjekt(params)
-        if (prosjektInstance.save(flush: true)) {
-			flash.message = "${message(code: 'sivadm.prosjekt.opprettet', args: [prosjektInstance.prosjektNavn, prosjektInstance.id])}"
-            redirect(action: "edit", id: prosjektInstance.id)
-        }
-        else {
-            render(view: "create", model: [prosjektInstance: prosjektInstance])
-        }
+		def prosjektInstance = new Prosjekt(params)
+		if (!prosjektInstance.hasErrors() && prosjektInstance.save(flush: true)) {
+			flash.message = "${message(code: 'default.created.message', args: [message(code: 'prosjekt.label', default: 'Prosjekt'), prosjektInstance.prosjektNavn])}"
+			redirect(action: "list")
+		}
+		else {
+			render(view: "create", model: [prosjektInstance: prosjektInstance])
+		}
     }
 
     def edit = {

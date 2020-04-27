@@ -7,18 +7,10 @@
         <title>${pageTitle}</title>
     </head>
     <body>
-    <g:form method="post" class="form form-horizontal" >
+    <g:form method="post" class="form form-horizontal">
+
     <div class="card" style="width: 100%;">
         <div class="card-body">
-            <g:if test="${flash.message}">
-                <div class="message">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${prosjektInstance}">
-                <div class="errors">
-                    <g:renderErrors bean="${prosjektInstance}" as="list" />
-                </div>
-            </g:hasErrors>
-
                 <g:hiddenField name="id" value="${prosjektInstance?.id}" />
                 <g:hiddenField name="version" value="${prosjektInstance?.version}" />
                 <div class="row">
@@ -172,6 +164,23 @@
             </div>
                    </div>
     </div>
+
+        <g:hasErrors bean="${prosjektInstance}">
+            <div class="card mt-2 mb-2 userMessage">
+                <div class="card-body bg-danger text-white">
+                       <g:renderErrors bean="${prosjektInstance}" as="list" />
+                </div>
+            </div>
+        </g:hasErrors>
+        <g:if test="${flash.message}">
+            <div class="card mt-2 mb-2 userMessage">
+                <div class="card-body bg-success text-white">
+               ${flash.message}
+                </div>
+            </div>
+
+        </g:if>
+
             </g:form>
 
 
