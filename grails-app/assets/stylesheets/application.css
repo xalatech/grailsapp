@@ -8,8 +8,7 @@
 * compiled file, but it's generally better to create a new file per style scope.
 *
 *= require bootstrap
-*= require grails
-*= require paper-dashboard/paper-dashboard
+*= require dashboard
 *= require mobile
 *= require custom
 *= require datepicker/css/bootstrap-datepicker.standalone.min.css
